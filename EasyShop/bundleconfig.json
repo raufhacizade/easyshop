@@ -1,0 +1,15 @@
+[
+  {
+    "outputFileName": "wwwroot/js/AdminJs/core/bundle.js",
+    "inputFiles": [
+      "wwwroot/js/AdminJs/core/jquery.3.2.1.min.js",
+      "wwwroot/js/AdminJs/core/popper.min.js",
+      "wwwroot/js/AdminJs/core/bootstrap.min.js",
+      "wwwroot/js/AdminJs/plugins/bootstrap-switch.js",
+      "wwwroot/js/AdminJs/plugins/chartist.min.js",
+      "wwwroot/js/AdminJs/plugins/bootstrap-notify.js",
+      "wwwroot/js/AdminJs/light-bootstrap-dashboard.js",
+      "wwwroot/js/AdminJs/demo.js"
+    ]
+  }
+]

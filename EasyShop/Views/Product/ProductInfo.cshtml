@@ -1,0 +1,82 @@
+﻿@model ProductModel
+
+<div class="row">
+    <div class="col-md-2">
+        @await Component.InvokeAsync("ParentCategoryList")
+
+        @await Component.InvokeAsync("BrandList")
+    </div>
+
+    <div class="col-md-10">
+
+        <div class="col-md-12 margin-20" style="margin:20px;">
+            <div class="row">
+                <div class="col-md-4 border rounded bg-white">
+                    <div class="div-frame m-1" style="height:250px;">
+                        <img alt="" src="~/images/products/profil/@Model.Product.ProfilImage" class="my-img">
+                    </div>
+                </div>
+
+                <div class="col-md-8">
+                    <h1>@Model.Product.ProductName</h1>
+                    <p class="m-1">
+                        Categories :
+                        @foreach (var category in Model.Categories)
+                        {
+                            @category.CategoryName
+                        }
+                    </p>
+                    <p class="m-1">Short Description: @Model.Product.Description</p>
+                    @if (Model.Product.Sale == 0)
+                    {
+                        <p class="m-0">Sale : No</p>
+                        <p class="m-0">Price : @Model.Product.Price$</p>
+                    }
+                    else
+                    {
+                        <p class="text-success m-1">Sale : Yes</p>
+                        <p class="text-success m-1">
+                            Price : @(Model.Product.Price - Model.Product.Sale * Model.Product.Price / 100)$
+                            <span class="line-through text-dark">(@Model.Product.Price$)</span>
+                        </p>
+                    }
+
+                    @if (Model.Product.AvailableAmount > 0)
+                    {
+                        <p class="m-1">Available Amount : @Model.Product.AvailableAmount</p>
+                        <form asp-controller="Cart" asp-action="AddToCart" method="post" class="m-1">
+                            <input type="hidden" name="id" value="@Model.Product.ProductId" />
+                            <label for="quantity">Quantity</label>
+                            <input type="number" name="quantity" value="1" min="1" max="@Model.Product.AvailableAmount" style="width: 45px;" />
+                            <button type="submit" class="btn ct-btn">
+                                Add to Card
+                            </button>
+                        </form>
+                    }
+                    else
+                    {
+                        <div class="alert-danger">This product is not in stock </div>
+                    }
+
+                </div>
+
+
+                <div class="col-md-12 p-0" style="margin-top:20px;">
+                    <table class="table table-striped table-hover m-0 p-0">
+                        @foreach (var feature in Model.Features)
+                        {
+                            <tr>
+                                <th>@feature.FeatureName</th>
+                                <td>@feature.Value</td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+

@@ -1,0 +1,54 @@
+﻿@model IEnumerable<ProductModel>
+@{
+    ViewData["Title"] = "ProductList";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card strpied-tabled-with-hover">
+                        <div class="card-header ">
+                            <h4 class="card-title">List of Brands</h4>
+                            <p class="card-category">Here is a subtitle for this table</p>
+                        </div>
+                        <div class="card-body table-full-width table-responsive">
+                            <table class="table table-hover table-striped">
+                                <thead class="bg-dark text-light">
+                                    <tr>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col" style="text-align-last:center">Profil Photo</th>
+                                        <th scope="col" style="text-align-last:center">Available Amount</th>
+                                        <th scope="col" style="text-align-last:center">Added </th>
+                                        <th scope="col" style="text-align-last:center">IsHome</th>
+                                        <th scope="col" style="text-align-last:center">Update</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var product in Model)
+                                    {
+                                        <tr>
+                                            <td scope="row">@product.Product.ProductId</td>
+                                            <td>@product.Product.ProductName</td>
+                                            <td class="text-center">
+                                                <img src="~/images/products/profil/@product.Product.ProfilImage" style="width:50px;" />
+                                            </td>
+                                            <td class="text-center">@product.Product.AvailableAmount</td>
+                                            <td class="text-center">@product.Product.DateAdded</td>
+                                            <td class="text-center">@product.Product.IsHome</td>
+
+                                            <td class=" text-center">
+                                                <button class="btn btn-outline-dark text-center">Update</button>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,24 @@
+﻿@model IEnumerable<Brand>
+
+<div class="row text-center my-color">
+    <div class="col">
+        <h5>Brands</h5>
+    </div>
+</div>
+
+<div class="row rounded">
+    @foreach (var brand in Model)
+    {
+        <div class="col-6">
+            <div class="row m-t-b-025 shadow">
+                <div class="col-12 card brand-hover" style="border: 1px solid orangered;">
+                    <div class="i-div">
+                        <a asp-controller="Product" asp-action="ListByBrand" asp-route-brandId="@brand.BrandId">
+                            <img alt="" src="~/images/BrandLogo/@brand.BrandLogo" class="i-div-image">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

@@ -1,0 +1,125 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - EasyShop</title>
+
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"
+              crossorigin="anonymous"
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" />
+    </environment>
+    <link href="~/css/UI/NewSite.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/31f0e95b95.js"></script>
+</head>
+<body class="bg-light">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light box-shadow">
+        <div class="container text-center">
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                <img src="~/images/logo.png" style="        width: 200px;" />
+            </a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContents">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarContents">
+                <ul class="navbar-nav mr-auto text-center justify-content-center">
+                    <li class="nav-item-active">
+                        <a asp-controller="Home" asp-action="Index" class="nav-link">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" id="dropdownProducts" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Products</a>
+
+                        <div class="dropdown-menu text-center" aria-labelledby="dropdownProducts">
+                            <a class="dropdown-item" href="#">Product 1</a>
+                            <a class="dropdown-item" href="#">Product 2</a>
+                            <a class="dropdown-item" href="#">Product 3</a>
+                            <div class="dropdown-diveder"></div>
+                            <a asp-controller="Product" asp-action="AllProduct">All Products</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#">About</a>
+                    </li>
+                    <li class="nav-item">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <a asp-controller="Account" asp-action="Logout" class="btn btn-outline-danger">Logout</a>
+                        }
+                        else
+                        {
+                            <a asp-controller="Account" asp-action="Login" class="btn btn-outline-success">Login</a>
+                        }
+                    </li>
+                </ul>
+
+
+
+
+
+                <!--<a class="home-cart-btn btn nav-link " asp-controller="Cart" style="width: 80px;height: 60px;position: relative;">
+                    Cart<i class="fas fa-cart-arrow-down"></i><span class="notification">@await Component.InvokeAsync("CartProductCount")</span>
+                </a>-->
+
+                <div class="row justify-content-center p-2">
+
+                    <form action="#" class="form-inline66">
+                            <div class="search-box p-0 shadow">
+                                <input class="search-txt" type="text" placeholder="Type to search" aria-label="Search">
+                                <button type="submit" class="search-btn">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <partial name="_CookieConsentPartial" />
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container text-center" style="        color: #032D33;
+        font-weight: bold;">
+            &copy; 2019 - EasyShop
+        </div>
+    </footer>
+
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=">
+        </script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o">
+        </script>
+    </environment>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

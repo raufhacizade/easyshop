@@ -1,0 +1,85 @@
+﻿@model OrderModel
+
+<div class="row">
+    <div class="col-md-6 rounded bg-white">
+        <div class="table-responsive">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Product</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">TotalPrice</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var cartline in Model.Cart.CartLines)
+                    {
+                        <tr>
+                            <th scope="row">@(cartline.CartLineId + 1)</th>
+                            <td>@cartline.Product.ProductName</td>
+                            <td>@cartline.Quantity</td>
+                            <td>@cartline.CartLinePrice</td>
+                        </tr>
+                    }
+                    <tr>
+                        <th scope="row" colspan="4" class="text-center">Bill : @Model.Cart.GetBill()$</th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="col-md-6 rounded bg-success">
+        <form method="Post">
+
+            <div asp-validation-summary="All" class="alert-danger"></div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label asp-for="Name"></label>
+                    <input asp-for="Name" class="form-control" placeholder="Enter your name">
+                </div>
+                <div class="form-group col-md-6">
+                    <label asp-for="Surname"></label>
+                    <input asp-for="Surname" class="form-control" placeholder="Enter your surname">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label asp-for="Phone"></label>
+                    <input asp-for="Phone" class="form-control" placeholder="Enter your phone number">
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label asp-for="Email"></label>
+                    <input asp-for="Email" class="form-control" placeholder="Enter your email adress">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-5">
+                    <label asp-for="Country"></label>
+                    <select asp-for="Country" class="form-control">
+                        <option selected>Choose...</option>
+                        <option>Azerbaijan</option>
+                        <option>Russia</option>
+                        <option>Turkey</option>
+                        <option>USA</option>
+                    </select>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label asp-for="City"></label>
+                    <input asp-for="City" class="form-control">
+                </div>
+                <div class="form-group col-md-3">
+                    <label asp-for="Zip"></label>
+                    <input asp-for="Zip" class="form-control">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-outline-success">Complete The Order</button>
+        </form>
+    </div>
+</div>

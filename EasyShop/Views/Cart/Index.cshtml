@@ -1,0 +1,95 @@
+﻿@model Cart
+
+<div class="row">
+    @if (Model.CartLines.Count != 0)
+    {
+        <div class="col-sm-12">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Product Photo</th>
+                        <th scope="col">Product Name</th>
+                        <th scope="col">Price($)</th>
+                        <th scope="col">Quantity</th>
+                        <th class="text-center">Update Quantity</th>
+                        <th class="text-center">Remove</th>
+                        <th scope="col">Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var cartline in Model.CartLines)
+                    {
+                        <tr>
+                            <th scope="row">
+                                <div>
+                                    <img src="~/images/products/profil/@cartline.Product.ProfilImage" style="max-width:40px;max-height:40px;" />
+                                </div>
+                            </th>
+                            <td>@cartline.Product.ProductName</td>
+                            <td>@cartline.CurrentProductPrice</td>
+                            <td>@cartline.Quantity</td>
+                            <td>
+                                <form method="post">
+                                    <div class="form-row p-0 m-0">
+                                        <input type="number" name="name" value="" hidden />
+
+                                        <div class="form-group col-12 p-1 m-0 text-center">
+                                            <input type="number" max="@(cartline.Product.AvailableAmount - cartline.Quantity)"
+                                                   min="-@cartline.Quantity" step="1" name="name" value="1"
+                                                   class="btn bg-white text-info btn-outline-info m-0 p-1 text-center" style="padding-left:0 !important;padding-right:0 !important;" />
+
+                                            <input type="submit" class="btn btn-outline-success p-1" value="Update" />
+                                        </div>
+                                    </div>
+                                </form>
+                            </td>
+                            <td class="text-center">
+                                <a asp-controller="Cart" asp-action="RemoveProduct" asp-route-ProductId="@cartline.Product.ProductId" class="btn btn-outline-danger">
+                                    <i class="fas fa-trash-alt"></i>
+                                </a>
+                            </td>
+                            <td class="text-success font-weight-bold">@cartline.CartLinePrice</td>
+                        </tr>
+                    }
+
+                    <tr>
+                        <th scope="row" colspan="7">
+                            <div class="row">
+                                <div class="col-2 text-center p-0">
+                                    <a asp-controller="Cart" asp-action="ClearCart" class="btn btn-outline-danger float-left">Clear Cart</a>
+                                </div>
+                                <div class="col-6"></div>
+                                <div class="col-2 text-center p-0">
+                                    <a asp-controller="Home" asp-action="Index" class="btn  btn-outline-info float-right">Continue Shopping</a>
+                                </div>
+                                <div class="col-2 text-center p-0">
+                                    <a asp-controller="Cart" asp-action="Checkout" class="btn btn-outline-success text-center float-right">
+                                        Checkout (Bill : @Model.GetBill()$)
+                                    </a>
+                                </div>
+                            </div>
+                        </th>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <div class="col-sm-12">
+            <div class="row">
+                <div class="col  text-center">
+                    <img src="~/images/EmptyCart.gif" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col alert-danger text-center">
+                    <h1>Your cart is empty</h1>
+                </div>
+            </div>
+
+        </div>
+    }
+</div>

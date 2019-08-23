@@ -1,0 +1,71 @@
+﻿@model CategoryListModel
+
+@{
+    ViewData["Title"] = "CategoryList";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card strpied-tabled-with-hover">
+                    <div class="card-header ">
+                        <h4 class="card-title">Striped Table with Hover</h4>
+                        <p class="card-category">Here is a subtitle for this table</p>
+                    </div>
+                    <div class="card-body table-full-width table-responsive">
+                        <table class="table table-hover table-striped">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Count Of Subcategory</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var parent in Model.ParentCategories)
+                                {
+                                <tr>
+                                    <td>@parent.ParentCategoryId</td>
+                                    <td>@parent.ParentCategoryName</td>
+                                    <th>@parent.Categories.Count</th>
+                                </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="card card-plain table-plain-bg">
+                    <div class="card-header ">
+                        <h4 class="card-title">Table on Plain Background</h4>
+                        <p class="card-category">Here is a subtitle for this table</p>
+                    </div>
+                    <div class="card-body table-full-width table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Parent Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var category in Model.Categories)
+                                {
+                                    <tr>
+                                        <th>@category.CategoryId</th>
+                                        <th>@category.CategoryName</th>
+                                        <th>@category.ParentCategory.ParentCategoryName</th>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

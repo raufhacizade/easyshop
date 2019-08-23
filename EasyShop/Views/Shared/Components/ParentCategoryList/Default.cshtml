@@ -1,0 +1,36 @@
+﻿@model IEnumerable<ParentCategoryModel>
+
+<div class="row text-center my-color">
+    <div class="col">
+        <h6>Shop by Category</h6>
+    </div>
+</div>
+
+<div class="row rounded">
+    @foreach (var parent in Model)
+    {
+        <div class="col-12" style="box-sizing: border-box !important;">
+            <div class="row" style="box-sizing: border-box !important;">
+                <button class="col-12 my-btn-border bg-white shadow" type="button" data-toggle="collapse"
+                        data-target="#@("navbarToggleExternalContent" + @parent.ParentCategoryId)"
+                        aria-controls="@("navbarToggleExternalContent" + @parent.ParentCategoryId)"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    @parent.ParentCategoryName
+                </button>
+            </div>
+            <div class="row collapse" id="@("navbarToggleExternalContent"+@parent.ParentCategoryId)">
+                @foreach (var category in parent.Categories)
+                {
+
+                <div class="col-12">
+                    <form method="post" asp-controller="Product" asp-action="ListByCategory" asp-route-categoryId="@category.CategoryId">
+                        <input type="submit" class="form-control my-btn-border border-none m-0" value="@category.CategoryName" />
+                    </form>
+                </div>
+                }
+            </div>
+        </div>
+
+    }
+</div>
+

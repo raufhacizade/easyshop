@@ -1,0 +1,83 @@
+﻿@model Cart
+
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Send message</button>
+        </div>
+    </div>
+
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Product Photo</th>
+            <th scope="col">Product Name</th>
+            <th scope="col">Price($)</th>
+            <th scope="col">Quantity</th>
+            <th class="text-center">Update Quantity</th>
+            <th class="text-center">Remove</th>
+            <th scope="col">Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var cartline in Model.CartLines)
+        {
+            <tr>
+                <th scope="row">
+                    <div>
+                        <img src="~/images/products/profil/@cartline.Product.ProfilImage" style="max-width:40px;max-height:40px;" />
+                    </div>
+                </th>
+                <td>@cartline.Product.ProductName</td>
+                <td>@cartline.CurrentProductPrice</td>
+                <td>@cartline.Quantity</td>
+                <td>
+                    <form method="post">
+                        <div class="form-row p-0 m-0">
+                            <input type="number" name="name" value="" hidden />
+
+                            <div class="form-group col-12 p-1 m-0 text-center">
+                                <input type="number" max="@(cartline.Product.AvailableAmount - cartline.Quantity)"
+                                       min="-@cartline.Quantity" step="1" name="name" value="1"
+                                       class="btn bg-white text-info btn-outline-info m-0 p-1 text-center" style="padding-left:0 !important;padding-right:0 !important;" />
+
+                                <input type="submit" class="btn btn-outline-success p-1" value="Update" />
+                            </div>
+                        </div>
+                    </form>
+                </td>
+                <td class="text-center">
+                    <a asp-controller="Cart" asp-action="RemoveProduct" asp-route-ProductId="@cartline.Product.ProductId" class="btn btn-outline-danger">
+                        <i class="fas fa-trash-alt"></i>
+                    </a>
+                </td>
+                <td class="text-success font-weight-bold">@cartline.CartLinePrice</td>
+            </tr>
+        }
+
+        <tr>
+            <th scope="row" colspan="7" class="text-center">
+                <div class="row">
+                    <div class="col-md-6 text-center">
+                        <a asp-controller="Cart" asp-action="ClearCart" class="btn col-md-12  m-0 btn-outline-danger">Clear Cart</a>
+                    </div>
+                    <div class="btn col-md-6 text-light text-center rounded" style="background: #FE2E19;">
+                        Bill : @Model.GetBill()$
+                    </div>
+                </div>
+            </th>
+        </tr>
+
+    </tbody>
+</table>

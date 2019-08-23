@@ -1,0 +1,87 @@
+﻿@model IEnumerable<Brand>
+@{
+    ViewData["Title"] = "BrandList";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card strpied-tabled-with-hover">
+                        <div class="card-header ">
+                            <h4 class="card-title">List of Brands</h4>
+                            <p class="card-category">Here is a subtitle for this table</p>
+                        </div>
+                        <div class="card-body table-full-width table-responsive">
+                            <table class="table table-hover table-striped">
+                                <thead class="bg-dark text-light">
+                                    <tr>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col" style="text-align-last:center">Logo</th>
+                                        <th scope="col" style="text-align-last:center">Count of Products</th>
+                                        <th scope="col" style="text-align-last:center">Update</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var brand in Model)
+                                    {
+                                        <tr>
+                                            <td scope="row">@brand.BrandId</td>
+                                            <td>@brand.BrandName</td>
+                                            <td class="text-center">
+                                                <img src="~/images/BrandLogo/@brand.BrandLogo" style="width:50px; background:white;" />
+                                            </td>
+                                            <td class="text-center">
+                                                @brand.Products.Count
+                                            </td>
+                                            <td class=" text-center">
+                                                <button type="button" class="btn btn-outline-dark text-center" data-toggle="modal" data-target="#updateModal" data-whatever="@@mdo">Update</button>
+
+                                                <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="updateModalLabel">New message</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <form>
+                                                                    <input type="number" name="id" value="@brand.BrandId" hidden/>
+                                                                    <div class="form-group">
+                                                                        <label asp-for="@brand.BrandName" class="col-form-label"></label>
+                                                                        <input asp-for="@brand.BrandName" class="form-control">
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label asp-for="@brand.BrandLogo" class="col-form-label"></label>
+                                                                        <input asp-for="@brand.BrandLogo" class="form-control">
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+                                                                <button type="button" class="btn btn-outline-success">Send message</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+    </div>
+
