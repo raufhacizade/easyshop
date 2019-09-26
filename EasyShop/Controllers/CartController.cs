@@ -59,7 +59,6 @@ namespace EasyShop.Controllers
             return RedirectToAction("Index");
         }
 
-        //[Authorize]
         public IActionResult Checkout()
         {
             var order = new OrderModel();
@@ -70,9 +69,12 @@ namespace EasyShop.Controllers
                 AppUser user = userManager.FindByIdAsync(userId).Result;
 
                 order.Name = user.Name;
-                order.Surname = user.UserName;
+                order.Surname = user.Surname;
                 order.Email = user.Email;
-                order.Phone = user.PhoneNumber;
+                order.PhoneNumber = user.PhoneNumber;
+                order.Country = user.Country;
+                order.City = user.City;
+                order.Zip = user.Zip;
             }
 
             order.Cart = GetCart();
@@ -86,15 +88,30 @@ namespace EasyShop.Controllers
 
             if (cart.CartLines.Count == 0)
                 ModelState.AddModelError("", "There is no any product in your Cart");
-
-            if (ModelState.IsValid)
+            else
             {
-                SaveOrder(cart, model);
-                cart.ClearAll();
-                SaveCart(cart);
-                return View("Complated");
+                if (ModelState.IsValid)
+                {
+                    SaveOrder(cart, model);
+                    cart.ClearAll();
+                    SaveCart(cart);
+                    return View("Complated");
+                }
             }
+
+            model.Cart = cart;
             return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult UpdateQuantity(int cartLineIndex, int quantity)
+        {
+            var cart = GetCart();
+
+            cart.UpdateProductQuantity(cartLineIndex, quantity);
+            SaveCart(cart);
+
+            return RedirectToAction("Index");
         }
 
         private void SaveOrder(Cart cart, OrderModel model)
@@ -110,7 +127,7 @@ namespace EasyShop.Controllers
             order.UserName = model.Name;
             order.UserSurname = model.Surname;
             order.UserEmail = model.Email;
-            order.UserPhone = model.Phone;
+            order.UserPhone = model.PhoneNumber;
 
 
             order.Country = model.Country;

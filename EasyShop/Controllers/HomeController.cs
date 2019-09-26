@@ -17,7 +17,7 @@ namespace EasyShop.Controllers
         public HomeController(IUnitOfWork unitOfWork) => this.unitOfWork = unitOfWork;
 
         public IActionResult Index()
-            => View("_Index", unitOfWork.Products.GetAll().Where(p=>p.IsHome).ToList());
+            => RedirectToAction("Index", "Product");
 
         public IActionResult Privacy()
         {
@@ -29,5 +29,8 @@ namespace EasyShop.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        public IActionResult ModalIndex()
+            => View();
     }
 }

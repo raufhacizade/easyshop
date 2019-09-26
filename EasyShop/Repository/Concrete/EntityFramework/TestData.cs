@@ -54,27 +54,27 @@ namespace EasyShop.Repository.Concrete.EntityFramework
                     new Product(){ProductName="IPhone 8 Plus Latest Ver.",Price=460,SoldAmount=10,AvailableAmount=252,
                                   ProfilImage ="iphone8_plus.jpg", DateAdded=DateTime.Now.AddDays(-10),
                                   Brand =brands[0],IsHome=true,ShortDescription="This is latest version of IPhone 8",
-                                  Gender ="Both",Sale=0,Description="This is Iphone 8 This is Iphone 8 This is Iphone 8 This is Iphone 8 This is Iphone 8" },
+                                  Gender ="Both",Discount=0,Description="This is Iphone 8 This is Iphone 8 This is Iphone 8 This is Iphone 8 This is Iphone 8" },
 
                     new Product(){ProductName="IPhone XS",Price=670,SoldAmount=23,AvailableAmount=452,
                                   ProfilImage ="iphoneXS.jpg", DateAdded=DateTime.Now,Brand=brands[0],
                                   IsHome=false,ShortDescription="This is new Phone",
-                                  Gender ="Both",Sale=10,Description="This is Iphone 8 This is Iphone 8 This is Iphone 8 This is Iphone 8 This is Iphone 8" },
+                                  Gender ="Both",Discount=10,Description="This is Iphone 8 This is Iphone 8 This is Iphone 8 This is Iphone 8 This is Iphone 8" },
                     
                     new Product(){ProductName="Samsung Galaxy Note 10",Price=670,SoldAmount=23,AvailableAmount=452,
                                   ProfilImage ="Samsung_Galaxy_Note_10.jpg", DateAdded=DateTime.Now,Brand=brands[2],
                                   IsHome=true,ShortDescription="This is new Phone",
-                                  Gender ="Both",Sale=10,Description="Samsung Galaxy Note 10 This is Iphone 8 This is Iphone 8 This is Iphone 8" },
+                                  Gender ="Both",Discount=10,Description="Samsung Galaxy Note 10 This is Iphone 8 This is Iphone 8 This is Iphone 8" },
 
                     new Product(){ProductName="NIKE AIR MAX 97",Price=380,SoldAmount=30,AvailableAmount=10,
                                   ProfilImage ="NIKE_AIR_MAX_97.jpg", DateAdded=DateTime.Now,Brand=brands[3],
                                   IsHome=true,ShortDescription="This is new Men's black sneaker",
-                                  Gender ="Both",Sale=30,Description="Men's black sneaker NIKE AIR MAX 97" },
+                                  Gender ="Both",Discount=30,Description="Men's black sneaker NIKE AIR MAX 97" },
 
                     new Product(){ProductName="Samsung Galaxy Tab A 10.1",Price=1270,SoldAmount=23,AvailableAmount=452,
                                   ProfilImage ="Samsung Galaxy Tab A 10.1.jpg", DateAdded=DateTime.Now,Brand=brands[2],
                                   IsHome=true,ShortDescription="This is new Samsung Galaxy Tab A 10.1",
-                                  Gender ="Both",Sale=10,Description="Samsung Galaxy Tab A 10.1is Iphone 8 This is Iphone 8 This is Iphone 8" }
+                                  Gender ="Both",Discount=10,Description="Samsung Galaxy Tab A 10.1is Iphone 8 This is Iphone 8 This is Iphone 8" }
 
                 };
                 context.Products.AddRange(products);

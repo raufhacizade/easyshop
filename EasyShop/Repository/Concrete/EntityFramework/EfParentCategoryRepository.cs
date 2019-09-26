@@ -22,9 +22,9 @@ namespace EasyShop.Repository.Concrete.EntityFramework
         {
             return GetAll().Select(pC => new ParentCategoryModel()
             {
-                ParentCategoryId =  pC.ParentCategoryId,
+                ParentCategoryId = pC.ParentCategoryId,
                 ParentCategoryName = pC.ParentCategoryName,
-                Categories = categoryRepository.GetAll().Where(c=> c.ParentCategoryId == pC.ParentCategoryId).ToList()
+                Categories = categoryRepository.GetAll().Where(c => c.ParentCategoryId == pC.ParentCategoryId).ToList()
             }
             );
         }

@@ -1,87 +1,124 @@
-﻿@model IEnumerable<Brand>
+﻿@model List<Brand>
 @{
     ViewData["Title"] = "BrandList";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    int rowId = 0;
 }
 
-    <div class="content">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card strpied-tabled-with-hover">
-                        <div class="card-header ">
-                            <h4 class="card-title">List of Brands</h4>
-                            <p class="card-category">Here is a subtitle for this table</p>
-                        </div>
-                        <div class="card-body table-full-width table-responsive">
-                            <table class="table table-hover table-striped">
-                                <thead class="bg-dark text-light">
-                                    <tr>
-                                        <th scope="col">ID</th>
-                                        <th scope="col">Name</th>
-                                        <th scope="col" style="text-align-last:center">Logo</th>
-                                        <th scope="col" style="text-align-last:center">Count of Products</th>
-                                        <th scope="col" style="text-align-last:center">Update</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (var brand in Model)
+@*<h6>@ViewData["filelocation"]</h6>*@
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 border p-2 rounded bg-white shadow" style="margin-bottom:3rem;">
+                <h1 class="text-center card-header ">Brand List</h1>
+                <table class="table table-hover">
+                    <thead class="bg-dark text-white">
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Name</th>
+                            <th scope="col" style="text-align-last:center">Logo</th>
+                            <th scope="col" style="text-align-last:center">Count of Products</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody id="BrandTableBody">
+                        @foreach (var brand in Model)
+                        {
+                            <tr>
+                                <td scope="row">@(++rowId)</td>
+                                <td>@brand.BrandName</td>
+                                <td class="text-center">
+                                    <img src="~/images/BrandLogo/@brand.BrandLogo" style="width:50px; background:white;" />
+                                </td>
+                                <td class="text-center">
+                                    @brand.Products.Count
+                                </td>
+                                <td class="text-center">
+                                    <button type="button" class="btn btn-outline-success text-center" data-toggle="modal" data-target=@("#updateModal"+ brand.BrandId)>
+                                        <i class="fas fa-pencil-alt"></i>
+                                    </button>
+                                    <a asp-controller="Admin" asp-action="DeleteBrand" asp-route-id="@brand.BrandId" class="btn btn-outline-danger desc-btn">
+                                        <i class="fas fa-trash-alt"></i>
+                                        <p class="btn-description">If you remove this brand then you will remove related products!</p>
+                                    </a>
+
+                                    @Html.Partial("AdminPartials/UpdateBrandForm", brand)
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+                <div class="row text-center">
+                    <div class="col  text-center">
+                        <button class="btn btn-outline-dark w-100 p-2" data-toggle="modal" data-target="#AddBrandModal">Add</button>
+
+                        @Html.Partial("AdminPartials/AddBrandForm", new AddBrandModel())
+
+
+                        <!-- section AddScripts{
+                        <script>
+
+                            $("#AddBrandForm").submit(function (event) {
+                                event.preventDefault();
+                                var form = $(this);
+
+                                var token = $('input[name="__RequestVerificationToken"]', form).val();
+                                var payload = new FormData();
+                                payload.append('brandName', $("#BrandName").val())
+                                payload.append('brandLogo', $("#BrandLogo")[0].files[0])
+                                payload.append('__RequestVerificationToken', token)
+
+                                $.ajax(
                                     {
-                                        <tr>
-                                            <td scope="row">@brand.BrandId</td>
-                                            <td>@brand.BrandName</td>
-                                            <td class="text-center">
-                                                <img src="~/images/BrandLogo/@brand.BrandLogo" style="width:50px; background:white;" />
-                                            </td>
-                                            <td class="text-center">
-                                                @brand.Products.Count
-                                            </td>
-                                            <td class=" text-center">
-                                                <button type="button" class="btn btn-outline-dark text-center" data-toggle="modal" data-target="#updateModal" data-whatever="@@mdo">Update</button>
+                                        url: form.attr("action"),
+                                        type: "POST",
+                                        data: payload,
+                                        processData: false,
+                                        contentType: false,
+                                        beforeSend: function () {
+                                            $("#form-loader").show();
+                                        },
+                                        complete: function () {
+                                            $("#form-loader").hide();
+                                        },
+                                        success: function (data) {
+                                            console.log(data);
 
-                                                <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="updateModalLabel">New message</h5>
-                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <form>
-                                                                    <input type="number" name="id" value="@brand.BrandId" hidden/>
-                                                                    <div class="form-group">
-                                                                        <label asp-for="@brand.BrandName" class="col-form-label"></label>
-                                                                        <input asp-for="@brand.BrandName" class="form-control">
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label asp-for="@brand.BrandLogo" class="col-form-label"></label>
-                                                                        <input asp-for="@brand.BrandLogo" class="form-control">
-                                                                    </div>
-                                                                </form>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
-                                                                <button type="button" class="btn btn-outline-success">Send message</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                            var html = '<tr><td scope="row">' + data[0] + '</td>'+
+                                                            '<td>'+ data[2] +'</td>'+
+                                                            '<td class="text-center">'+
+                                                                '<img src="~/images/BrandLogo/'+ data[3] +'" style="width:50px; background:white;" />'+
+                                                            '</td>'+
+                                                            '<td class="text-center">'+ 0 +
+                                                            '</td>'+
+                                                            '<td class="text-center">'+
+                                                                '<button type="button" class="btn btn-outline-success text-center"+
+                                                                    '<i class="fas fa-pencil-alt"></i>'+
+                                                                '</button>'+
+                                                                '<a asp-controller="Admin" asp-action="DeleteBrand" asp-route-id="' + data[1] + '" class="btn btn-outline-danger desc-btn">'+
+                                                                    '<i class="fas fa-trash-alt"></i>'+
+                                                                    '<p class="btn-description">If you remove this brand then you will remove related products!</p>'+
+                                                                '</a>' +
+                                                            '</td></tr>';
 
-                                            </td>
-                                        </tr>
-                                    }
-                                </tbody>
-                            </table>
+                                            $("#BrandTableBody").append(html);
+                                            $("#AddBrandModal").modal('hide');
+                                        },
+                                        error: function () {
 
-                            
-                        </div>
+                                        }
+
+                                    });
+                            });
+                        </script>
+                        }-->
+
                     </div>
                 </div>
+
             </div>
         </div>
-
-        
     </div>
-
+</div>

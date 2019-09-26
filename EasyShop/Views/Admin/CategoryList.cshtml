@@ -3,68 +3,202 @@
 @{
     ViewData["Title"] = "CategoryList";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    int parentRowId = 0;
+    int categoryRowId = 0;
 }
 
 <div class="content">
     <div class="container-fluid">
+
         <div class="row">
-            <div class="col-md-12">
-                <div class="card strpied-tabled-with-hover">
-                    <div class="card-header ">
-                        <h4 class="card-title">Striped Table with Hover</h4>
-                        <p class="card-category">Here is a subtitle for this table</p>
-                    </div>
-                    <div class="card-body table-full-width table-responsive">
-                        <table class="table table-hover table-striped">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Name</th>
-                                    <th>Count Of Subcategory</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var parent in Model.ParentCategories)
-                                {
-                                <tr>
-                                    <td>@parent.ParentCategoryId</td>
-                                    <td>@parent.ParentCategoryName</td>
-                                    <th>@parent.Categories.Count</th>
-                                </tr>
-                                }
-                            </tbody>
-                        </table>
+            <div class="col text-danger text-center" asp-validation-summary="All"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 border p-2 rounded bg-white shadow" style="margin-bottom:3rem;">
+                <h1 class="text-center card-header ">Parent Category Table</h1>
+                <table class="table table-hover">
+                    <thead class="bg-dark text-white">
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th class="last-center">Count Of Subcategory</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="ParentCategoryTableBody">
+                        @foreach (var parent in Model.ParentCategories)
+                        {
+                            <tr>
+                                <td>@(++parentRowId)</td>
+                                <td>@parent.ParentCategoryName</td>
+                                <td class="text-center">@parent.Categories.Count</td>
+                                <td class="text-center">
+                                    <button type="button" class="btn btn-outline-success text-center" data-toggle="modal" data-target=@("#updateParentModal"+parent.ParentCategoryId)>
+                                        <i class="fas fa-pencil-alt"></i>
+                                    </button>
+                                    <a asp-controller="Admin" asp-action="DeleteParentCategory" asp-route-id="@parent.ParentCategoryId" class="btn btn-outline-danger desc-btn">
+                                        <i class="fas fa-trash-alt"></i>
+                                        <p class="btn-description">If you remove this Parent Cat. then you will remove related Categories and products!</p>
+                                    </a>
+
+                                    @Html.Partial("AdminPartials/UpdateParentCategoryForm", parent)
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+                <div class="row text-center">
+                    <div class="col  text-center">
+                        <button class="btn btn-outline-dark w-100 p-2" data-toggle="modal" data-target="#AddParentCategoryModal">Add</button>
+
+                        @Html.Partial("AdminPartials/AddParentCategoryForm", new ParentCategory())
+
+                        @section AddScripts{
+                            <script>
+                                $("#AddParentCategoryForm").submit(function (event) {
+                                    event.preventDefault();
+                                    var form = $(this);
+
+                                    var token = $('input[name="__RequestVerificationToken"]', form).val();
+                                    var data = { parentCategoryName: $("#AddParentCategoryName").val() };
+                                    var dataWidthToken = $.extend(data, { '__RequestVerificationToken': token });
+
+                                    $.ajax(
+                                        {
+                                            url: form.attr("action"),
+                                            type: "POST",
+                                            data: dataWidthToken,
+                                            beforeSend: function () {
+                                                $("#form-loader").show();
+                                            },
+                                            complete: function () {
+                                                $("#form-loader").hide();
+                                            },
+                                            success: function (data) {
+                                                //console.log(data);
+                                                var html = '<tr><td>' + @(++parentRowId)+ '</td><td>'
+                                                    + data.parentCategoryName + '</td><td class="text-center">'
+                                                    + data.categories.length + '</td><td class="text-center">'
+                                                    + '<a href="" class="btn btn-outline-success"><i class="fas fa-pencil-alt"></i></a> '
+                                                    + ' <a href="../Admin/DeleteParentCategory/' + data.parentCategoryId + '" class="btn btn-outline-danger"><i class="fas fa-trash-alt"></i></a></td></tr>';
+
+                                                $("#ParentCategoryTableBody").append(html);
+                                                $("#AddParentCategoryModal").modal('hide');
+                                            },
+                                            error: function () {
+
+                                            }
+
+                                        });
+                                });
+                            </script>
+                        }
                     </div>
                 </div>
             </div>
-            <div class="col-md-12">
-                <div class="card card-plain table-plain-bg">
-                    <div class="card-header ">
-                        <h4 class="card-title">Table on Plain Background</h4>
-                        <p class="card-category">Here is a subtitle for this table</p>
-                    </div>
-                    <div class="card-body table-full-width table-responsive">
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Name</th>
-                                    <th>Parent Name</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var category in Model.Categories)
-                                {
-                                    <tr>
-                                        <th>@category.CategoryId</th>
-                                        <th>@category.CategoryName</th>
-                                        <th>@category.ParentCategory.ParentCategoryName</th>
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
+
+            <div class="col-md-12 border p-2 rounded bg-white shadow">
+                <h1 class="text-center card-header ">Category Table</h1>
+                <table class="table table-hover">
+                    <thead class="bg-dark text-white">
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Parent Name</th>
+                            <th class="last-center">Count of Products</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="CategoryTableBody">
+                        @foreach (var category in Model.Categories)
+                        {
+                            <tr>
+                                <td>@(++categoryRowId)</td>
+                                <td>@category.CategoryName</td>
+                                <td>@category.ParentCategory.ParentCategoryName</td>
+                                <td class="text-center">@category.ProductCategories.Count</td>
+                                <td class="text-center">
+                                    <button type="button" class="btn btn-outline-success text-center" data-toggle="modal" data-target=@("#updateCategoryModal"+category.CategoryId)>
+                                        <i class="fas fa-pencil-alt"></i>
+                                    </button>
+                                    <a asp-controller="Admin" asp-action="DeleteCategory" asp-route-id="@category.CategoryId" class="btn btn-outline-danger desc-btn">
+                                        <i class="fas fa-trash-alt"></i>
+                                        <p class="btn-description">If you remove this Category, then you will remove related products!</p>
+                                    </a>
+
+                                    @Html.Partial("AdminPartials/UpdateCategoryForm", category)
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+                <div class="row text-center">
+                    <div class="col  text-center">
+                        <button class="btn btn-outline-dark  w-100 p-2" data-toggle="modal" data-target="#AddCategoryModal">Add</button>
+
+                        @{
+                            var addCategoryModel = new AddCategoryModel();
+
+
+                            foreach (var item in Model.ParentCategories)
+                            {
+                                addCategoryModel.ParentCategorySelectList.Add(
+                                new SelectListItem() { Text = item.ParentCategoryName, Value = item.ParentCategoryId.ToString() });
+                            }
+
+                            @Html.Partial("AdminPartials/AddCategoryForm", addCategoryModel);
+                        }
+
+                        @section addScripts2{
+                            <script>
+                                $("#AddCategoryForm").submit(function (event) {
+                                    event.preventDefault();
+                                    var form = $(this);
+
+                                    var token = $('input[name="__RequestVerificationToken"]', form).val();
+                                    var data = { categoryName: $("#CategoryName").val(), parentCategoryId: $("#AddParentCategoryId").val() };
+                                    var dataWidthToken = $.extend(data, { '__RequestVerificationToken': token });
+
+                                    $.ajax(
+                                        {
+                                            url: form.attr("action"),
+                                            type: "POST",
+                                            data: dataWidthToken,
+                                            beforeSend: function () {
+                                                $("#form-loader").show();
+                                            },
+                                            complete: function () {
+                                                $("#form-loader").hide();
+                                            },
+                                            success: function (data) {
+                                                //console.log(data);
+                                                var html = '<tr><td>' +  @(++categoryRowId) + '</td>' +
+                                                    '<td>' + data[1] + '</td>' +
+                                                    '<td>' + data[2] + '</td>' +
+                                                    '<td class="text-center">' + 0 + '</td>' +
+                                                    '<td class="text-center" >' +
+                                                    '<a href="" class="btn btn-outline-success"><i class="fas fa-pencil-alt"></i></a> ' +
+                                                    '<a href="../Admin/DeleteCategory/' + data[0] + '" class="btn btn-outline-danger"><i class="fas fa-trash-alt"></i></a>' +
+                                                    '</td ></tr >';
+
+                                                $("#CategoryTableBody").append(html);
+                                                $("#AddCategoryModal").modal('hide');
+                                            },
+                                            error: function () {
+
+                                            }
+
+                                        });
+                                });
+                            </script>
+                        }
+
                     </div>
                 </div>
+
             </div>
         </div>
     </div>

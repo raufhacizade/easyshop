@@ -1,0 +1,52 @@
+﻿@model Product
+
+<div class="col-12 front p-2 bg-white rounded shadow">
+    <div class="i-div">
+        <img alt="" src="~/images/products/profil/@Model.ProfilImage" class="i-div-image">
+    </div>
+    <div class="pr-card-header"><p>@Model.ProductName</p></div>
+    <div class="pr-card-desc">@Model.ShortDescription</div>
+
+    <div class="pr-card-price">
+        @if (Model.Discount == 0)
+        {
+            <p>Price : @Model.Price$</p>
+        }
+        else
+        {
+            <p class="line-through">Price : @Model.Price$</p>
+            <p class="text-success">Price : @(Model.Price - Model.Discount * Model.Price / 100)$</p>
+        }
+    </div>
+</div>
+
+<div class="col-12 back p-2 bg-white rounded shadow">
+    <div class="i-div">
+        <a asp-controller="Product" asp-action="ProductInfo" asp-route-id="@Model.ProductId">
+            <img alt="" src="~/images/products/profil/@Model.ProfilImage" class="i-div-image">
+        </a>
+    </div>
+    <div class="pr-card-header p-2">
+        <a asp-controller="Product" asp-action="ProductInfo" asp-route-id="@Model.ProductId" class=" m-0 btn p-1 my-btn-border border-none w-100">
+            More Info...
+        </a>
+    </div>
+    <div class="pr-card-desc p-2">
+        <a asp-controller="Cart" asp-action="AddToCart" asp-route-id="@Model.ProductId" class=" m-0 btn p-1 my-btn-border border-none w-100">
+            Add to Card <i class="fas fa-cart-arrow-down"></i>
+        </a>
+    </div>
+    <div class="pr-card-price">
+        @if (Model.Discount == 0)
+        {
+            <p>Price : @Model.Price$</p>
+        }
+        else
+        {
+            <p class="line-through">Price : @Model.Price$</p>
+            <p class="text-success">Price : @(Model.Price - Model.Discount * Model.Price / 100)$</p>
+        }
+    </div>
+</div>
+
+

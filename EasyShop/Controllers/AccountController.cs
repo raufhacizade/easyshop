@@ -27,7 +27,7 @@ namespace EasyShop.Controllers
         public IActionResult Login(string returnUrl)
         {
             ViewBag.returnUrl = returnUrl;
-            return View();
+            return View(new LoginModel());
         }
 
         [HttpPost]
@@ -45,16 +45,75 @@ namespace EasyShop.Controllers
                     var result = await signInManager.PasswordSignInAsync(user, model.Password, false, false);
 
                     if (result.Succeeded) return Redirect(returnUrl ?? "/");
+                    ModelState.AddModelError(nameof(model.Email), "User was not found");
                 }
                 ModelState.AddModelError(nameof(model.Email), "Invalid email or password");
             }
             return View(model);
         }
 
-        public async Task<IActionResult> Logout( )
+        [AllowAnonymous]
+        [HttpGet]
+        public IActionResult SignUp(string returnUrl)
+        {
+            ViewBag.returnUrl = returnUrl;
+            return View(new LoginModel());
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> SignUp(LoginModel model, string returnUrl)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await userManager.FindByEmailAsync(model.Email);
+
+                if (user == null)
+                {
+
+                    AppUser newUser = new AppUser()
+                    {
+
+                        UserName = model.Email,
+                        Email = model.Email,
+                        Name = model.Name,
+                        Surname = model.Surname,
+                        PhoneNumber = model.PhoneNumber,
+                        Country = model.Country,
+                        City = model.City,
+                        Zip = model.Zip
+                    };
+
+                    var createUserResult = await userManager.CreateAsync(newUser, model.Password);
+                    //var errors = createUserResult.Errors.ToArray();
+
+                    if (createUserResult.Succeeded)
+                    {
+                        var addRoleResult = await userManager.AddToRoleAsync(newUser, "customer");
+                        if (addRoleResult.Succeeded)
+                        {
+                            ViewBag.Success = "Sign Up was successful.You can log in this account";
+                            return View("Login", model);
+                        }
+                        else ModelState.AddModelError("", "System has some problem, Please, Go to Sign Up and try again!");
+                    }
+                    else ModelState.AddModelError("", "There is some propblem! Please, Go to Sign Up and try again!");
+
+                }
+                else
+                    ModelState.AddModelError("", "This email has already taken! Please, Go to Sign Up and use another Email");
+            }
+            else
+                ModelState.AddModelError("", "Please, Go to SignUp and Fill all required fields");
+
+            return View("Login", model);
+        }
+
+        public async Task<IActionResult> Logout()
         {
             await signInManager.SignOutAsync();
-            return RedirectToAction("Index","Home");
+            return RedirectToAction("Index", "Product");
         }
     }
 }

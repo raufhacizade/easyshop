@@ -27,7 +27,8 @@ namespace EasyShop.Migrations
 
                     b.Property<string>("BrandLogo");
 
-                    b.Property<string>("BrandName");
+                    b.Property<string>("BrandName")
+                        .IsRequired();
 
                     b.HasKey("BrandId");
 
@@ -112,7 +113,8 @@ namespace EasyShop.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("ParentCategoryName");
+                    b.Property<string>("ParentCategoryName")
+                        .IsRequired();
 
                     b.HasKey("ParentCategoryId");
 
@@ -133,6 +135,8 @@ namespace EasyShop.Migrations
 
                     b.Property<string>("Description");
 
+                    b.Property<int>("Discount");
+
                     b.Property<string>("Gender");
 
                     b.Property<bool>("IsHome");
@@ -143,8 +147,6 @@ namespace EasyShop.Migrations
                         .IsRequired();
 
                     b.Property<string>("ProfilImage");
-
-                    b.Property<int>("Sale");
 
                     b.Property<string>("ShortDescription");
 
@@ -176,11 +178,13 @@ namespace EasyShop.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("FeatureName");
+                    b.Property<string>("FeatureName")
+                        .IsRequired();
 
                     b.Property<int>("ProductId");
 
-                    b.Property<string>("Value");
+                    b.Property<string>("Value")
+                        .IsRequired();
 
                     b.HasKey("ProductFeatureId");
 

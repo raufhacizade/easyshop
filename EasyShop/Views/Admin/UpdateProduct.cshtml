@@ -1,0 +1,140 @@
+﻿@model ExtentedProductModel
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="content">
+    <div class="container-fluid">
+        <form method="post" id="productForm" enctype="multipart/form-data" asp-controller="Admin" asp-action="UpdateProduct">
+
+            <div class="row">
+                <div class="col-md-12 border p-2 rounded bg-white shadow" style="margin-bottom:3rem;">
+                    <h1 class="text-center card-header ">Product Info</h1>
+
+                    <table class="table">
+                        <thead class="bg-dark text-white">
+                            <tr>
+                                <th scope="col" width="40%">Property</th>
+                                <th scope="col" class="last-center">Property Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <input asp-for="@Model.Product.ProductId" hidden />
+                            @*<tr>
+                                <td class="font-weight-bold">Product Id</td>
+                                <td class="text-center">@Model.Product.ProductId</td>
+                            </tr>*@
+                            <tr>
+                                <td>Product Name</td>
+                                <td>
+                                    <input asp-for="@Model.Product.ProductName" class="form-control text-center border-none" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Product Price</td>
+                                <td>
+                                    <input asp-for="@Model.Product.Price" class="form-control text-center border-none" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>IsHome</td>
+                                <td>
+                                    <input asp-for="@Model.Product.IsHome" class="form-control form-check text-center border-none" />
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Brand</td>
+                                <td>
+                                    <select asp-for="BrandId" asp-items="@Model.BrandSelectList" class="form-control text-center last-center border-none"></select>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Category</td>
+                                <td>
+                                    <select asp-for="@Model.CatgoriesIdArray" asp-items="@Model.CategorySelectList" multiple required class="form-control text-center last-center border-none"></select>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Short Description</td>
+                                <td>
+                                    <input asp-for="@Model.Product.ShortDescription" class="form-control text-center border-none" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Description</td>
+                                <td>
+                                    <textarea asp-for="@Model.Product.Description" class="form-control text-center border-none"></textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Gender</td>
+                                <td>
+                                    <select asp-for="@Model.Product.Gender" class="form-control text-center last-center">
+                                        <option value="unisex">Unisex</option>
+                                        <option value="female">Female</option>
+                                        <option value="male">Male</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Sold Amount</td>
+                                <td>
+                                    <input asp-for="@Model.Product.SoldAmount" class="form-control text-center border-none" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Available Amount</td>
+                                <td>
+                                    <input asp-for="@Model.Product.AvailableAmount" class="form-control text-center border-none" />
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Product Discount</td>
+                                <td>
+                                    <input asp-for="@Model.Product.Discount" class="form-control text-center border-none" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Profile Photo</td>
+                                <td class="text-center">
+                                    <img src="~/images/products/profil/@Model.Product.ProfilImage" style="width:10%; margin-bottom: 0.5rem;" />
+
+                                    <div class="custom-file">
+                                        <label asp-for="ProfilImageFile" class="custom-file-label">@Model.Product.ProfilImage (Choose a new Image)</label>
+                                        <input asp-for="@Model.ProfilImageFile" class="custom-file-input" accept="image/png, image/jpeg, images/jpg" />
+                                    </div>
+
+                                    @section AddScripts{
+                                        <script>
+                                            $(".custom-file-input").on("change", function () {
+                                                var fileName = $(this).val().split("\\").pop();
+                                                $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+                                            });
+                                        </script>
+                                    }
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="row">
+                        <div class="col-4">
+                            <a asp-action="DeleteProduct" asp-route-id="@Model.Product.ProductId" class="btn btn-outline-danger">Delete <i class="fas fa-trash-alt"></i></a>
+                        </div>
+                        <div class="col-8">
+                            <button type="submit" class="btn btn-outline-success float-right" form="productForm">Update <i class="fas fa-pencil-alt"></i></button>
+                            <a asp-action="ProductList" class="btn btn-outline-dark float-right" style="margin-right:0.5rem;"><i class="fas fa-arrow-left"></i> Go Back</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+ 
+
+

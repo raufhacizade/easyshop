@@ -1,0 +1,116 @@
+﻿@model Order
+@{
+    ViewData["Title"] = "OrderDetails";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 border p-2 rounded bg-white shadow" style="margin-bottom:3rem;">
+                <h1 class="text-center card-header ">Order Details</h1>
+                <table class="table table-hover table-responsive-lg">
+                    <thead class="p-0 m-0">
+                        <tr>
+                            <th scope="col" style="width:50%;"></th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="2" class="text-center font-weight-bold" style="background:grey;color: #fff;">User Info</td>
+                        </tr>
+                        <tr>
+                            <td class="font-weight-bold">User Name</td>
+                            <td>@Model.UserName</td>
+                        </tr>
+
+                        <tr>
+                            <td class="font-weight-bold">User Surname</td>
+                            <td>@Model.UserSurname</td>
+                        </tr>
+
+                        <tr>
+                            <td class="font-weight-bold">User Email</td>
+                            <td>@Model.UserEmail</td>
+                        </tr>
+
+                        <tr>
+                            <td class="font-weight-bold">User Phone</td>
+                            <td>@Model.UserPhone</td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="2" class="text-center font-weight-bold" style="background:grey;color: #fff;">Order Info</td>
+                        </tr>
+
+                        <tr>
+                            <td class="font-weight-bold">Bill</td>
+                            <td>@Model.Bill  $</td>
+                        </tr>
+
+                        <tr>
+                            <td class="font-weight-bold">Order Date</td>
+                            <td>@Model.UserSurname</td>
+                        </tr>
+
+                        <tr>
+                            <td class="font-weight-bold">Order State</td>
+                            <td>@Model.OrderState.ToString()</td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="2" class="text-center font-weight-bold" style="background:grey;color: #fff;">Delivery</td>
+                        </tr>
+
+                        <tr>
+                            <td class="font-weight-bold">Country</td>
+                            <td>@Model.Country</td>
+                        </tr>
+
+                        <tr>
+                            <td class="font-weight-bold">City</td>
+                            <td>@Model.City</td>
+                        </tr>
+
+                        <tr>
+                            <td class="font-weight-bold">Zip Code</td>
+                            <td>@Model.Zip</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <table class="table table-hover table-responsive-lg">
+                    <thead class="bg-dark text-white">
+                        <tr>
+                            <th>#</th>
+                            <th scope="col" style="width:40%;">Product Name</th>
+                            <th scope="col" class="last-center">Discounted  Price</th>
+                            <th scope="col" class="last-center">Quantity</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var orderLine in Model.OrderLines)
+                        {
+                            <tr>
+                                <td>@(Model.OrderLines.IndexOf(orderLine)+1)</td>
+                                <td>@orderLine.Product.ProductName</td>
+                                <td class="text-center">@orderLine.ProductPrice</td>
+                                <td class="text-center">@orderLine.Quantity</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+                @if (Model.OrderState == OrderState.Waiting)
+                {
+                    <div class="row">
+                        <div class="col">
+                            <a asp-action="OrderComplate" asp-route-orderId="@Model.OrderId" class="btn btn-outline-success float-right">Complate <i class="far fa-check-circle"></i></a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

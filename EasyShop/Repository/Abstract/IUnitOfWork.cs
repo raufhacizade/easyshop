@@ -13,6 +13,8 @@ namespace EasyShop.Repository.Abstract
         IProductRepository Products { get; }
         IOrderRepository Orders { get; }
 
+        void RemoveFromProductCategory(int ProductId, int CategoryId);
+        void RemoveFeatureFromProductByFeatureId(int ProductFeatureId);
         int SaveChanges();
     }
 }

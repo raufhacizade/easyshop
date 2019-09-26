@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using ReflectionIT.Mvc.Paging;
 
 namespace EasyShop
 {
@@ -28,7 +29,15 @@ namespace EasyShop
             services.AddDbContext<EasyShopContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConn")));
 
             services.AddDbContext<AppIdentityDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("IdentityConn")));
-            services.AddIdentity<AppUser, IdentityRole>()
+            services.AddIdentity<AppUser, IdentityRole>(options => {
+                options.Password.RequireDigit = false;
+                options.Password.RequiredLength = 8;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequiredUniqueChars = 0;
+                options.User.AllowedUserNameCharacters = null;
+            })
                 .AddEntityFrameworkStores<AppIdentityDbContext>()
                 .AddDefaultTokenProviders();
 
@@ -41,6 +50,7 @@ namespace EasyShop
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
+            services.AddPaging();
             services.AddMemoryCache();
             services.AddSession();
         }
@@ -63,13 +73,8 @@ namespace EasyShop
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
-                name: "products",
-                template: "products/{category?}",
-                defaults: new { Controller = "Product", Action = "List" });
-
-                routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Product}/{action=Index}/{id?}");
             });
 
             TestData.AddTestData(app);

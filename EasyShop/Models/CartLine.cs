@@ -13,7 +13,7 @@ namespace EasyShop.Models
         public int Quantity { get; set; }
 
         public double CurrentProductPrice
-           => (Product.Price - ((Product.Price * Product.Sale) / 100));
+           => (Product.Price - ((Product.Price * Product.Discount) / 100));
 
         public double CartLinePrice
             => CurrentProductPrice * Quantity;

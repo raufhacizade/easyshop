@@ -3,76 +3,94 @@
 <div class="row">
     @if (Model.CartLines.Count != 0)
     {
-        <div class="col-sm-12">
-            <table class="table">
-                <thead class="thead-dark">
-                    <tr>
-                        <th scope="col">Product Photo</th>
-                        <th scope="col">Product Name</th>
-                        <th scope="col">Price($)</th>
-                        <th scope="col">Quantity</th>
-                        <th class="text-center">Update Quantity</th>
-                        <th class="text-center">Remove</th>
-                        <th scope="col">Total</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var cartline in Model.CartLines)
-                    {
+        <div class="col">
+            <div class=" table-responsive-sm bg-white rounded shadow">
+                <table class="table rounded">
+                    <thead class="thead-dark">
                         <tr>
-                            <th scope="row">
-                                <div>
-                                    <img src="~/images/products/profil/@cartline.Product.ProfilImage" style="max-width:40px;max-height:40px;" />
-                                </div>
-                            </th>
-                            <td>@cartline.Product.ProductName</td>
-                            <td>@cartline.CurrentProductPrice</td>
-                            <td>@cartline.Quantity</td>
-                            <td>
-                                <form method="post">
-                                    <div class="form-row p-0 m-0">
-                                        <input type="number" name="name" value="" hidden />
-
-                                        <div class="form-group col-12 p-1 m-0 text-center">
-                                            <input type="number" max="@(cartline.Product.AvailableAmount - cartline.Quantity)"
-                                                   min="-@cartline.Quantity" step="1" name="name" value="1"
-                                                   class="btn bg-white text-info btn-outline-info m-0 p-1 text-center" style="padding-left:0 !important;padding-right:0 !important;" />
-
-                                            <input type="submit" class="btn btn-outline-success p-1" value="Update" />
-                                        </div>
-                                    </div>
-                                </form>
-                            </td>
-                            <td class="text-center">
-                                <a asp-controller="Cart" asp-action="RemoveProduct" asp-route-ProductId="@cartline.Product.ProductId" class="btn btn-outline-danger">
-                                    <i class="fas fa-trash-alt"></i>
-                                </a>
-                            </td>
-                            <td class="text-success font-weight-bold">@cartline.CartLinePrice</td>
+                            <th scope="col">Product Photo</th>
+                            <th scope="col">Product Name</th>
+                            <th scope="col">Price($)</th>
+                            <th scope="col">Quantity</th>
+                            <th class="text-center">Update Quantity</th>
+                            <th class="text-center">Remove</th>
+                            <th scope="col">Total</th>
                         </tr>
-                    }
+                    </thead>
+                    <tbody>
+                        @foreach (var cartline in Model.CartLines)
+                        {
+                            <tr>
+                                <th scope="row">
+                                    <div>
+                                        <img src="~/images/products/profil/@cartline.Product.ProfilImage" style="max-width:40px;max-height:40px;" />
+                                    </div>
+                                </th>
+                                <td>@cartline.Product.ProductName</td>
+                                <td>@cartline.CurrentProductPrice</td>
+                                <td>@cartline.Quantity</td>
+                                <td>
+                                    <form method="post" asp-action="UpdateQuantity">
+                                        <div class="form-row p-0 m-0">
+                                            <input type="number" name="cartLineIndex" value="@Model.CartLines.IndexOf(cartline)" hidden />
 
-                    <tr>
-                        <th scope="row" colspan="7">
-                            <div class="row">
-                                <div class="col-2 text-center p-0">
-                                    <a asp-controller="Cart" asp-action="ClearCart" class="btn btn-outline-danger float-left">Clear Cart</a>
-                                </div>
-                                <div class="col-6"></div>
-                                <div class="col-2 text-center p-0">
-                                    <a asp-controller="Home" asp-action="Index" class="btn  btn-outline-info float-right">Continue Shopping</a>
-                                </div>
-                                <div class="col-2 text-center p-0">
-                                    <a asp-controller="Cart" asp-action="Checkout" class="btn btn-outline-success text-center float-right">
-                                        Checkout (Bill : @Model.GetBill()$)
+                                            <div class="form-group col-12 p-1 m-0 text-center">
+                                                <input type="number" name="quantity"
+                                                       max="@(cartline.Product.AvailableAmount - cartline.Quantity)"
+                                                       min="-@cartline.Quantity" step="1" value="0"
+                                                       class="btn bg-white text-info btn-outline-info m-0 p-1 text-center"
+                                                       style="padding-left:0 !important;padding-right:0 !important;" />
+
+                                                <input type="submit" class="btn btn-outline-success p-1" value="Update" />
+                                            </div>
+                                        </div>
+                                    </form>
+                                </td>
+                                <td class="text-center">
+                                    <a asp-controller="Cart" asp-action="RemoveProduct" asp-route-ProductId="@cartline.Product.ProductId" class="btn btn-outline-danger">
+                                        <i class="fas fa-trash-alt"></i>
                                     </a>
-                                </div>
-                            </div>
-                        </th>
-                    </tr>
+                                </td>
+                                <td class="text-success font-weight-bold">@cartline.CartLinePrice</td>
+                            </tr>
+                        }
 
-                </tbody>
-            </table>
+                        <tr>
+                            <td scope="row" colspan="7">
+                                <div class="row m-0">
+                                    <div class="col-3 text-center p-0">
+                                        <a asp-controller="Cart" asp-action="ClearCart" class="btn btn-outline-danger float-left m-1">Clear Cart  <i class="fas fa-trash-alt"></i></a>
+                                    </div>
+                                    
+                                    <div class="col text-center p-0">
+                                        <div class="row">
+                                            <div class="col">
+
+                                                <a asp-controller="Cart" asp-action="Checkout" class="btn btn-outline-success float-right m-1">
+                                                    Checkout (Bill : @Model.GetBill()$)
+                                                </a>
+                                                <a asp-controller="Home" asp-action="Index" class="btn  btn-outline-info float-right m-1">Continue Shopping</a>
+                                            </div>
+                                        </div>
+                                    </div> 
+                                    @*<div class="col-3 text-center p-0">
+                                        <div class="row">
+                                            <div class="col">
+                                                <a asp-controller="Home" asp-action="Index" class="btn  btn-outline-info float-right">Continue Shopping</a>
+                                                <a asp-controller="Cart" asp-action="Checkout" class="btn btn-outline-success text-center float-right">
+                                                    Checkout (Bill : @Model.GetBill()$)
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>*@
+                                </div>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+           
         </div>
     }
     else

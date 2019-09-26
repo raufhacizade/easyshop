@@ -1,0 +1,115 @@
+﻿@model List<ProductFeature>
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    int no = 0;
+}
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 border p-2 rounded bg-white shadow" style="margin-bottom:3rem;">
+                <h1 class="text-center card-header ">Product Feature (@ViewBag.ProductName)</h1>
+
+                <table class="table">
+                    <thead class="bg-dark text-white">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col" style="width:30%;">Feature Name</th>
+                            <th scope="col">Feature Value</th>
+                            <th scope="col" class="last-center"></th>
+                        </tr>
+                    </thead>
+                    <tbody id="ProductFeatureTable">
+                        @foreach (var feature in Model)
+                        {
+                            <tr>
+                                <td>@(++no)</td>
+                                <td>@feature.FeatureName</td>
+                                <td>@feature.Value</td>
+                                <td class="text-center">
+                                    <button type="button" class="btn btn-outline-success text-center d-inline-block" data-toggle="modal" data-target=@("#updateFeatureItemModal"+ feature.ProductFeatureId)>
+                                        <i class="fas fa-pencil-alt"></i>
+                                    </button>
+                                    <form asp-controller="Admin" asp-action="DeleteProductFeatureItem" class="p-0 m-0 d-inline-block">
+                                        <input type="number" name="FeatureIndex" value="@(no-1)" hidden />
+                                        <input type="number" name="ProductId" value="@ViewBag.ProductId" hidden />
+                                        <button type="submit" class="btn btn-outline-danger"><i class="fas fa-trash-alt"></i></button>
+                                    </form>
+                                    
+                                    @Html.Partial("AdminPartials/_UpdateProductFeatureItemForm", feature)
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+                <div class="row">
+                    <div class="col  text-center">
+                        <button class="btn btn-outline-dark w-100 p-2" data-toggle="modal" data-target="#AddProductFeatureModal">Add Feature</button>
+
+                        @{
+                            ProductFeature productFeature = new ProductFeature()
+                            {
+                                ProductId = ViewBag.ProductId
+                            };
+                        }
+
+                        @Html.Partial("AdminPartials/AddProductFeatureForm", productFeature)
+
+                        @section AddScripts{
+                            <script>
+                                $("#AddProductFeatureForm").submit(function (event) {
+                                    event.preventDefault();
+                                    var form = $(this);
+
+                                    var token = $('input[name="__RequestVerificationToken"]', form).val();
+                                    var data = { productId: $("#AddProductId").val(), featureName: $("#AddFeatureName").val(), value: $("#AddValue").val() };
+                                    var dataWidthToken = $.extend(data, { '__RequestVerificationToken': token });
+
+                                    $.ajax(
+                                        {
+                                            url: form.attr("action"),
+                                            type: "POST",
+                                            data: dataWidthToken,
+                                            beforeSend: function () {
+                                                $("#form-loader").show();
+                                            },
+                                            complete: function () {
+                                                $("#form-loader").hide();
+                                            },
+                                            success: function (data) {
+                                                console.log(data);
+                                                var html = '<tr><td>' + @(++no) + '</td>' +
+                                                    '<td>' + data[1] + '</td>' +
+                                                    '<td>' + data[2] + '</td>' +
+                                                    '<td class="text-center" id="feature' + data[2]+'">' +
+                                                    '<a href="" class="btn btn-outline-success text-center d-inline-block">' +
+                                                    '<i class="fas fa-pencil-alt"></i>' +
+                                                    '</a>  ' +
+                                                    '<form action="../Admin/DeleteProductFeatureItem"  class="p-0 m-0 d-inline-block">' +
+                                                    '<input type="number" name="FeatureIndex" value="' + @(no-1) + '" hidden />' +
+                                                    '<input type="number" name="ProductId" value="' + @ViewBag.ProductId + '" hidden />' +
+                                                    '<button type="submit" class="btn btn-outline-danger"><i class="fas fa-trash-alt"></i></button>' +
+                                                    '</form>' +
+                                                    '</td>' +
+                                                    '</tr>';
+
+                                                $("#ProductFeatureTable").append(html);
+                                                $("#AddProductFeatureModal").modal('hide');
+                                            },
+                                            error: function () {
+
+                                            }
+
+                                        });
+                                });
+                            </script>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

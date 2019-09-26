@@ -1,0 +1,22 @@
+﻿@model LoginModel
+
+<form asp-controller="Account" asp-action="SignUp" class="log-form border-box" method="post">
+    @Html.AntiForgeryToken()
+    <h1 class="log-h1">Create Account</h1>
+
+    <span class="log-span">or use your email for registration</span>
+
+    <div style="overflow: auto; height:9rem; padding: 0 5px 0 0;margin-bottom:1rem;">
+        <input class="log-input" asp-for="Name" placeholder="Name" />
+        <input class="log-input" asp-for="Surname" placeholder="Surname" />
+        <input class="log-input" asp-for="Email" placeholder="Email" />
+        <input class="log-input" asp-for="Password" placeholder="Password" />
+        <input class="log-input" asp-for="PhoneNumber" placeholder="Phone Number" />
+        <select class="log-input" asp-for="Country" asp-items="@Html.GetEnumSelectList<EnumCountries>()">
+            <option disabled>Select one country</option>
+        </select>
+        <input class="log-input" asp-for="City" placeholder="City" />
+        <input class="log-input" asp-for="Zip" placeholder="Zip Code" />
+    </div>
+    <button type="submit" class="log-button">Sign Up</button>
+</form>

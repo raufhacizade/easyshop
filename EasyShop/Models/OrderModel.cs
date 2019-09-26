@@ -20,7 +20,7 @@ namespace EasyShop.Models
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Please enter a valid Phone number")]
-        public string Phone { get; set; }
+        public string PhoneNumber { get; set; }
 
         [Required(ErrorMessage = "Please enter a Country name")]
         public string Country { get; set; }

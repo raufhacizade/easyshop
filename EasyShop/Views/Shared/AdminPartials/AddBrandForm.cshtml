@@ -1,0 +1,47 @@
+﻿@model AddBrandModel
+
+
+<div class="modal fade" id="AddBrandModal" tabindex="-1" role="dialog" aria-labelledby="AddBrandModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <form method="post" id="AddBrandForm" asp-controller="Admin" asp-action="AddBrand" enctype="multipart/form-data">
+                @Html.AntiForgeryToken()
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label>Brand Name</label>
+                        <input asp-for="BrandName" class="form-control last-center" placeholder="Enter a brand name" required>
+                        <span asp-validation-for="BrandName"class="text-color-red"></span>
+                    </div>
+
+                    <div class="custom-file">
+                        <input asp-for="@Model.BrandLogo" class="custom-file-input" accept="image/png, image/jpeg, images/jpg" required>
+                        <label class="custom-file-label">Choose a photo</label>
+                        <span asp-validation-for="BrandLogo" class="text-color-red"></span>
+                    </div>
+
+                   
+
+                    @section AddScripts{
+
+                        <script>
+                            $(".custom-file-input").on("change", function () {
+                                var fileName = $(this).val().split("\\").pop();
+                                $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+                            });
+                        </script>
+                    }
+
+                    <div class="row">
+                        <div class="col text-center" style="padding-top:1rem;">
+                            <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-outline-success">Save</button>
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

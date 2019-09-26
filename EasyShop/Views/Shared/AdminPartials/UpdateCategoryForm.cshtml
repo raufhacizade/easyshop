@@ -1,0 +1,55 @@
+﻿@model Category
+@using EasyShop.Repository.Abstract
+@inject IParentCategoryRepository repository
+@{
+    var parentSelectlist = new List<SelectListItem>();
+    var parentList = repository.GetAll().ToList();
+
+    foreach (var parent in parentList)
+    {
+        if (parent.ParentCategoryId == Model.ParentCategoryId)
+        {
+            continue;
+        }
+
+        var selectParent = new SelectListItem()
+        {
+            Text = parent.ParentCategoryName,
+            Value = parent.ParentCategoryId.ToString()
+        };
+
+        parentSelectlist.Add(selectParent);
+    }
+}
+
+<div class="modal fade" id=@("updateCategoryModal"+Model.CategoryId)
+     tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+
+        <form method="post" asp-controller="Admin" asp-action="UpdatetCategory">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <input name="id" value="@Model.CategoryId" hidden />
+
+                    <div class="form-group">
+                        <label asp-for="@Model.CategoryName" class="col-form-label"></label>
+                        <input name="categoryName" class="form-control" value="@Model.CategoryName" required />
+                        <span asp-validation-for="@Model.CategoryName"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="@Model.ParentCategory" class="col-form-label"></label>
+                        <select name="parentCategoryId" asp-items="parentSelectlist" class="custom-select" required>
+                            <option selected value="@Model.ParentCategory.ParentCategoryId">@Model.ParentCategory.ParentCategoryName (Cureent Parent Category)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-outline-success">Save</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>

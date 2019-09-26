@@ -1,0 +1,47 @@
+﻿@model OrderPagingModel
+@{
+    ViewData["Title"] = "ComplatedOrders";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    int rowId = (Model.PagingDetails.CurrentPage - 1) * Model.PagingDetails.ItemsPerPage;
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 border p-2 rounded bg-white shadow" style="margin-bottom:0.5rem;">
+                <h1 class="text-center card-header ">Complated Orders</h1>
+                <table class="table table-hover table-responsive-lg">
+                    <thead class="bg-dark text-white">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col" style="width:30%;">User Fullname</th>
+                            <th scope="col">User Phone</th>
+                            <th scope="col" class="last-center">Order Date</th>
+                            <th scope="col" class="last-center">Bill</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var order in Model.Orders)
+                        {
+                            <tr>
+                                <td>@(++rowId)</td>
+                                <td>@(order.UserName + ", " + @order.UserSurname)</td>
+                                <td>@order.UserPhone</td>
+                                <td class="text-center">@order.OrderDate</td>
+                                <td class="text-center">@order.Bill $</td>
+                                <td class="text-center">
+                                    <a asp-action="OrderDetails" asp-route-orderId="@order.OrderId" class="btn btn-outline-primary">Details</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            @if (Model.PagingDetails.TotalItems != 0)
+            {
+                <div page-model="@Model.PagingDetails" page-action="@ViewBag.Action" class="paging-div"></div>
+            }
+        </div>
+    </div>
+</div>

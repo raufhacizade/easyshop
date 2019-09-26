@@ -1,85 +1,101 @@
 ﻿@model OrderModel
+@*<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>*@
 
 <div class="row">
-    <div class="col-md-6 rounded bg-white">
-        <div class="table-responsive">
-            <table class="table">
-                <thead class="thead-dark">
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Product</th>
-                        <th scope="col">Quantity</th>
-                        <th scope="col">TotalPrice</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var cartline in Model.Cart.CartLines)
-                    {
-                        <tr>
-                            <th scope="row">@(cartline.CartLineId + 1)</th>
-                            <td>@cartline.Product.ProductName</td>
-                            <td>@cartline.Quantity</td>
-                            <td>@cartline.CartLinePrice</td>
-                        </tr>
-                    }
-                    <tr>
-                        <th scope="row" colspan="4" class="text-center">Bill : @Model.Cart.GetBill()$</th>
-                    </tr>
-                </tbody>
-            </table>
+    <div class="col-md-6">
+        <div class="row p-2">
+            <div class="col rounded p-2 shadow" style="background:#FE4330;">
+                <div class="table-responsive bill-table  bg-white rounded">
+                    <table class="table">
+                        <thead style="background:#012B31;color:#fff; border:none !important;">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Product</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">TotalPrice</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var cartline in Model.Cart.CartLines)
+                            {
+                                <tr>
+                                    <th scope="row">@(cartline.CartLineId + 1)</th>
+                                    <td>@cartline.Product.ProductName</td>
+                                    <td>@cartline.Quantity</td>
+                                    <td>@cartline.CartLinePrice</td>
+                                </tr>
+                            }
+                            <tr>
+                                <th scope="row" colspan="4" class="text-center" style="color:#FE4330;">Bill : @Model.Cart.GetBill()$</th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 
-    <div class="col-md-6 rounded bg-success">
-        <form method="Post">
+    <div class="col-md-6">
+        <div class="row p-2">
+            <div class="col p-2 rounded shadow">
+                <form method="Post" class="p-2 rounded bg-white p-2">
+                    <div asp-validation-summary="ModelOnly" class="alert-danger"></div>
 
-            <div asp-validation-summary="All" class="alert-danger"></div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label asp-for="Name"></label>
+                            <input asp-for="Name" class="form-control" placeholder="Enter your name">
+                            <small><span asp-validation-for="Name"></span></small>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label asp-for="Surname"></label>
+                            <input asp-for="Surname" class="form-control" placeholder="Enter your surname">
+                            <small><span asp-validation-for="Surname"></span></small>
+                        </div>
+                    </div>
 
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label asp-for="Name"></label>
-                    <input asp-for="Name" class="form-control" placeholder="Enter your name">
-                </div>
-                <div class="form-group col-md-6">
-                    <label asp-for="Surname"></label>
-                    <input asp-for="Surname" class="form-control" placeholder="Enter your surname">
-                </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label asp-for="PhoneNumber"></label>
+                            <input asp-for="PhoneNumber" class="form-control" placeholder="Enter your phone number">
+                            <small><span asp-validation-for="PhoneNumber"></span></small>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label asp-for="Email"></label>
+                            <input asp-for="Email" class="form-control" placeholder="Enter your email adress">
+                            <small><span asp-validation-for="Email"></span></small>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-5">
+                            <label asp-for="Country"></label>
+                            <select asp-for="Country" class="form-control" asp-items="@CountryList.CountrySelectList()">
+                                <option disabled>Choose...</option>
+                            </select>
+                            <small><span asp-validation-for="Country"></span></small>
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            <label asp-for="City"></label>
+                            <input asp-for="City" class="form-control">
+                            <small><span asp-validation-for="City"></span></small>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label asp-for="Zip"></label>
+                            <input asp-for="Zip" class="form-control">
+                            <small><span asp-validation-for="Zip"></span></small>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn my-btn-border p-2">Complete The Order</button>
+                </form>
             </div>
-
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label asp-for="Phone"></label>
-                    <input asp-for="Phone" class="form-control" placeholder="Enter your phone number">
-                </div>
-
-                <div class="form-group col-md-6">
-                    <label asp-for="Email"></label>
-                    <input asp-for="Email" class="form-control" placeholder="Enter your email adress">
-                </div>
-            </div>
-
-            <div class="form-row">
-                <div class="form-group col-md-5">
-                    <label asp-for="Country"></label>
-                    <select asp-for="Country" class="form-control">
-                        <option selected>Choose...</option>
-                        <option>Azerbaijan</option>
-                        <option>Russia</option>
-                        <option>Turkey</option>
-                        <option>USA</option>
-                    </select>
-                </div>
-
-                <div class="form-group col-md-4">
-                    <label asp-for="City"></label>
-                    <input asp-for="City" class="form-control">
-                </div>
-                <div class="form-group col-md-3">
-                    <label asp-for="Zip"></label>
-                    <input asp-for="Zip" class="form-control">
-                </div>
-            </div>
-            <button type="submit" class="btn btn-outline-success">Complete The Order</button>
-        </form>
+        </div>
     </div>
 </div>

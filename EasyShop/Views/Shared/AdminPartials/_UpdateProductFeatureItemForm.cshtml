@@ -1,0 +1,32 @@
+﻿@model ProductFeature
+
+<div class="modal fade" id="@("updateFeatureItemModal"+ Model.ProductFeatureId)" tabindex="-1" role="dialog" aria-labelledby="@("updateFeatureItemModal"+ Model.ProductFeatureId)" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <form method="post" class="m-0" id="UpdateProductFeatureItemForm" asp-controller="Admin" asp-action="UpdateProductFeatureItem">
+                @Html.AntiForgeryToken()
+                <div class="modal-body">
+
+                    <input asp-for="ProductFeatureId" hidden />
+                    <input asp-for="ProductId" hidden />
+
+                    <div class="form-group">
+                        <label>Feature Name</label>
+                        <input asp-for="FeatureName" class="form-control last-center text-center" placeholder="enter feature name" required>
+                        <span asp-validation-for="FeatureName" style="color:red;"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Feature Value</label>
+                        <input asp-for="Value" class="form-control last-center text-center" placeholder="enter feature value" required>
+                        <span asp-validation-for="Value" style="color:red;"></span>
+                    </div>
+
+                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-outline-success">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

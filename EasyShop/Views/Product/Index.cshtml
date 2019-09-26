@@ -1,0 +1,51 @@
+﻿@model ProductPagingModel
+@{
+    ViewData["Title"] = "List";
+}
+
+<div class="row">
+    <div class="col-2">
+        @await Component.InvokeAsync("ParentCategoryList")
+
+        @await Component.InvokeAsync("BrandList")
+    </div>
+
+    <div class="col-10">
+        <div class="row">
+            <div class="col text-sm-left">
+                <h6 class="text-secondary">There are @Model.PagingDetails.TotalItems products...</h6>
+            </div>
+        </div>
+
+        <div class="row">
+
+            @if (Model.PagingDetails.TotalItems == 0)
+            {
+                @Html.Partial("_NoProduct")
+            }
+            else
+            {
+
+                @foreach (var product in Model.Products)
+                {
+                    <div class="col-md-3 m-b-1">
+                        <div class="row flip3D text-center m-l-r-025">
+                            @Html.Partial("_ProductCardView", product)
+                        </div>
+                    </div>
+
+                }
+            }
+
+            <div class="col-12">
+                @if (Model.PagingDetails.TotalItems != 0)
+                {
+                    <div page-model="@Model.PagingDetails" page-action="@ViewBag.Action" class="paging-div m-1" style="display:inline-block;"></div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

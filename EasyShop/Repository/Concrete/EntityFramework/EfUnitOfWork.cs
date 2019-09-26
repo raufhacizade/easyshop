@@ -1,4 +1,5 @@
 ﻿using EasyShop.Repository.Abstract;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,6 +49,18 @@ namespace EasyShop.Repository.Concrete.EntityFramework
             {
                 throw;
             }
+        }
+
+        public void RemoveFromProductCategory(int ProductId, int CategoryId)
+        {
+            var query = $"delete from ProductCategory where ProductId={ProductId} and CategoryId={CategoryId}";
+            dbContext.Database.ExecuteSqlCommand(query);
+        }
+
+        public void RemoveFeatureFromProductByFeatureId(int ProductFeatureId)
+        {
+            var query = $"delete from ProductFeatures where ProductFeatureId={ProductFeatureId}";
+            dbContext.Database.ExecuteSqlCommand(query);
         }
     }
 }

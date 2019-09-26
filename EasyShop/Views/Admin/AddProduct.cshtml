@@ -1,0 +1,137 @@
+﻿@model ExtentedProductModel
+
+@{
+    ViewData["Title"] = "AddProduct";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="content">
+    <div class="container-fluid">
+        <form method="post"  enctype="multipart/form-data" asp-controller="Admin" asp-action="AddProduct">
+
+            <div class="row">
+                <div class="col-md-12 border p-2 rounded bg-white shadow">
+                    <h1 class="text-center card-header ">New Product</h1>
+
+                    <table class="table">
+                        <thead class="bg-dark text-white">
+                            <tr>
+                                <th scope="col" width="40%">Property</th>
+                                <th scope="col" class="last-center">Property Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Product Name</td>
+                                <td>
+                                    <input asp-for="@Model.Product.ProductName" class="form-control text-center last-center" placeholder="Enter Product Name" required />
+                                    <span class="text-center text-color-red" asp-validation-for="@Model.Product.ProductName"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Product Price</td>
+                                <td>
+                                    <input asp-for="@Model.Product.Price" class="form-control text-center" required />
+                                    <span class="text-center text-color-red" asp-validation-for="@Model.Product.Price"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>IsHome</td>
+                                <td>
+                                    <input asp-for="@Model.Product.IsHome" class="form-control form-check text-center" />
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Brand</td>
+                                <td>
+                                    <select asp-for="BrandId" asp-items="@Model.BrandSelectList" required class="form-control text-center last-center"></select>
+                                    <span class="text-center text-color-red" asp-validation-for="BrandId"></span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Category</td>
+                                <td>
+                                    <select asp-for="CatgoriesIdArray" asp-items="@Model.CategorySelectList" multiple required class="form-control text-center last-center"></select>
+                                    <span class="text-center text-color-red" asp-validation-for="CatgoriesIdArray"></span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Short Description</td>
+                                <td>
+                                    <input asp-for="@Model.Product.ShortDescription" maxlength="40" class="form-control text-center last-center" placeholder="Enter Short Description" required />
+                                    <span class="text-center text-color-red" asp-validation-for="@Model.Product.ShortDescription"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Description</td>
+                                <td>
+                                    <textarea asp-for="@Model.Product.Description" class="form-control text-center last-center" placeholder="Enter a Description"></textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Gender</td>
+                                <td>
+                                    <select asp-for="@Model.Product.Gender" class="form-control text-center last-center">
+                                        <option value="unisex">Unisex</option>
+                                        <option value="female">Female</option>
+                                        <option value="male">Male</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Sold Amount</td>
+                                <td>
+                                    <input asp-for="@Model.Product.SoldAmount" min="0" class="form-control text-center" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Available Amount</td>
+                                <td>
+                                    <input asp-for="@Model.Product.AvailableAmount" class="form-control text-center" min="0" value="1" required />
+                                    <span class="text-center text-color-red" asp-validation-for="@Model.Product.AvailableAmount"></span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Product Discount</td>
+                                <td>
+                                    <input asp-for="@Model.Product.Discount" min="0" max="100" class="form-control text-center" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Profile Photo</td>
+                                <td class="text-center">
+                                    <div class="custom-file">
+                                        <label asp-for="ProfilImageFile" class="custom-file-label">@Model.Product.ProfilImage (Choose a Image)</label>
+                                        <input asp-for="ProfilImageFile" class="custom-file-input" accept="image/png, image/jpeg, images/jpg" required />
+                                        <span class="text-center text-color-red" asp-validation-for="ProfilImageFile"></span>
+                                    </div>
+
+                                    @section AddScripts{
+                                        <script>
+                                            $(".custom-file-input").on("change", function () {
+                                                var fileName = $(this).val().split("\\").pop();
+                                                $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+                                            });
+                                        </script>
+                                    }
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="row">
+                        <div class="col">
+                            <button type="submit" class="btn btn-outline-dark w-100">Add</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+

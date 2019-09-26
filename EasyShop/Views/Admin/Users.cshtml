@@ -1,0 +1,51 @@
+﻿@model UsersModel
+@{
+    ViewData["Title"] = "Users";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    int rowId = 0;
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 border p-2 rounded bg-white shadow" style="margin-bottom:0.5rem;">
+                <h1 class="text-center card-header ">Users</h1>
+                <table class="table table-hover table-responsive-lg">
+                    <thead class="bg-dark text-white">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col" style="width:30%;">User Fullname</th>
+                            <th scope="col">User Email</th>
+                            <th scope="col">User Phone</th>
+                            <th scope="col">User Country</th>
+                            <th scope="col">User City</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var user in Model.Users)
+                        {
+                            <tr>
+                                <td>@(++rowId)</td>
+                                <td>@(user.Name + " " + user.Surname)</td>
+                                <td>@user.Email</td>
+                                <td>@user.PhoneNumber</td>
+                                <td>@user.Country</td>
+                                <td>@user.City</td>
+                                <td class="text-center">
+                                    <a asp-action="DeleteUser" asp-route-email="@user.Email" class="btn btn-outline-danger"><i class="fas fa-trash-alt"></i></a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <p class="p-0 m-0">The number of users is @Model.PagingDetails.TotalItems</p>
+            </div>
+
+            @if (Model.PagingDetails.TotalItems != 0)
+            {
+                <div page-model="@Model.PagingDetails" page-action="Users" class="paging-div"></div>
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,24 @@
+﻿@model ParentCategory
+
+    <div class="modal fade" id=@("updateParentModal"+Model.ParentCategoryId)
+         tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+
+            <form method="post" asp-controller="Admin" asp-action="UpdateParentCategory">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <input asp-for="@Model.ParentCategoryId" hidden />
+                        <div class="form-group">
+                            <label asp-for="@Model.ParentCategoryName" class="col-form-label"></label>
+                            <input asp-for="@Model.ParentCategoryName" class="form-control last-center">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-outline-success">Save</button>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>

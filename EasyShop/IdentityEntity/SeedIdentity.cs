@@ -25,7 +25,10 @@ namespace EasyShop.IdentityEntity
             if (await userManager.FindByEmailAsync(username) == null)
             {
                 if (await roleManager.FindByNameAsync(role) == null)
+                {
                     await roleManager.CreateAsync(new IdentityRole(role));
+                    await roleManager.CreateAsync(new IdentityRole("customer"));
+                }
 
                 AppUser user = new AppUser()
                 {

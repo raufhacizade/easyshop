@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace EasyShop.Models
 {
-    public class ProductModel
+    public class ProductInfoModel
     {
         public Product Product { get; set; }
         public List<ProductFeature> Features { get; set; }
         public List<Category> Categories { get; set; }
+        public List<Brand> Brands { get; set; }
     }
 }

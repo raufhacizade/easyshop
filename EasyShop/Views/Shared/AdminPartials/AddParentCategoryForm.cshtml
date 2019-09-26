@@ -1,0 +1,29 @@
+﻿@model  ParentCategory
+
+
+    <div class="modal fade" id="AddParentCategoryModal" tabindex="-1" role="dialog" aria-labelledby="AddParentCategoryModal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
+                <form method="post" class="m-0" id="AddParentCategoryForm" asp-controller="Admin" asp-action="AddParentCategory">
+                    @Html.AntiForgeryToken()
+                    <div class="modal-body">
+                        @*<div class="text-danger" asp-validation-summary="All"></div>*@
+
+                        <div class="form-group">
+                            <label>Parent Category Name</label>
+                            <input asp-for="@Model.ParentCategoryName" id="AddParentCategoryName" class="form-control last-center" placeholder="Enter a parent category name" required>
+                            <span asp-validation-for="@Model.ParentCategoryName" class="text-color-red"></span>
+                        </div>
+
+                        <div class="text-center">
+                            <img id="form-loader" src="~/images/loading8.gif" style="width:150px;display:none;" />
+                        </div>
+
+                        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-outline-success">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>

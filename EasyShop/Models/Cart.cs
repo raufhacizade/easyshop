@@ -28,6 +28,17 @@ namespace EasyShop.Models
             else wantedProduct.Quantity += quantity;
         }
 
+        public void UpdateProductQuantity(int cartLineIndex, int quantity)
+        {
+            CartLine cartLine = cartLines[cartLineIndex];
+
+            if (-cartLine.Quantity == quantity)
+                CartLines.Remove(cartLine);
+            else
+                cartLine.Quantity += quantity;
+
+        }
+
         public void RemoveProduct(Product product)
             => cartLines.RemoveAll(cl => cl.Product.ProductId == product.ProductId);
 

@@ -1,0 +1,37 @@
+﻿@model AddCategoryModel
+
+
+<div class="modal fade" id="AddCategoryModal" tabindex="-1" role="dialog" aria-labelledby="AddCategoryModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <form method="post" id="AddCategoryForm" asp-controller="Admin" asp-action="AddCategory">
+                @Html.AntiForgeryToken()
+                <div class="modal-body">
+                    <div class="text-danger" asp-validation-summary="All"></div>
+
+                    <div class="form-group">
+                        <label> Category Name</label>
+                        <input asp-for="CategoryName" class="form-control" placeholder="Enter Name">
+                        <span asp-validation-for="CategoryName" class="bg-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Parent Category name</label>
+                        <select asp-for="ParentCategoryId" id="AddParentCategoryId" class="form-control" asp-items="@Model.ParentCategorySelectList">
+                            <option disabled>Select one of them</option>
+                        </select>
+                        <span asp-validation-for="ParentCategoryId" class="bg-danger"></span>
+                    </div>
+
+                    <div class="text-center">
+                        <img id="form-loader" src="~/images/loading8.gif" style="width:150px;display:none;" />
+                    </div>
+
+                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-outline-success">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

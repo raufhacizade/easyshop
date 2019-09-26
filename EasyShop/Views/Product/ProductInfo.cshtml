@@ -1,4 +1,4 @@
-﻿@model ProductModel
+﻿@model ProductInfoModel
 
 <div class="row">
     <div class="col-md-2">
@@ -12,8 +12,8 @@
         <div class="col-md-12 margin-20" style="margin:20px;">
             <div class="row">
                 <div class="col-md-4 border rounded bg-white">
-                    <div class="div-frame m-1" style="height:250px;">
-                        <img alt="" src="~/images/products/profil/@Model.Product.ProfilImage" class="my-img">
+                    <div class="i-div m-1" style="height:250px;">
+                        <img alt="" src="~/images/products/profil/@Model.Product.ProfilImage" class="i-div-image">
                     </div>
                 </div>
 
@@ -27,7 +27,7 @@
                         }
                     </p>
                     <p class="m-1">Short Description: @Model.Product.Description</p>
-                    @if (Model.Product.Sale == 0)
+                    @if (Model.Product.Discount == 0)
                     {
                         <p class="m-0">Sale : No</p>
                         <p class="m-0">Price : @Model.Product.Price$</p>
@@ -36,7 +36,7 @@
                     {
                         <p class="text-success m-1">Sale : Yes</p>
                         <p class="text-success m-1">
-                            Price : @(Model.Product.Price - Model.Product.Sale * Model.Product.Price / 100)$
+                            Price : @(Model.Product.Price - Model.Product.Discount * Model.Product.Price / 100)$
                             <span class="line-through text-dark">(@Model.Product.Price$)</span>
                         </p>
                     }

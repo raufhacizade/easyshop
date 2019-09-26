@@ -1,0 +1,31 @@
+﻿@model Brand
+
+<div class="modal fade" id=@("updateModal"+Model.BrandId)
+     tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+
+        <form method="post" asp-controller="Admin" asp-action="UpdateBrand" enctype="multipart/form-data">
+            <div class="modal-content">
+                <div class="modal-body">
+                    @*<input type="number" name="brandId" value="@Model.BrandId" hidden />*@
+                    <input asp-for="BrandId" hidden />
+                    <div class="form-group">
+                        <label asp-for="BrandName" class="col-form-label"></label>
+                        <input asp-for="BrandName" required class="form-control last-center">
+                        <span asp-validation-for="BrandName" class="text-color-red"></span>
+                    </div>
+                    <div class="custom-file">
+                        <label asp-for="@Model.BrandLogo" class="custom-file-label"></label>
+                        <input type="file" name="brandLogo" class="custom-file-input" accept="image/png, image/jpeg, images/jpg" required />
+                        <span asp-validation-for="BrandLogo" class="text-color-red"></span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-outline-success">Save</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>

@@ -17,7 +17,7 @@ namespace EasyShop.Entity
         public int SoldAmount { get; set; }
         [Required]
         public int AvailableAmount { get; set; }
-        public int Sale { get; set; }
+        public int Discount { get; set; }
         public string ProfilImage { get; set; }
 
         public string Gender { get; set; }

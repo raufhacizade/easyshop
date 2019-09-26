@@ -6,13 +6,13 @@
     </div>
 </div>
 
-<div class="row rounded">
+<div class="row rounded" style="max-height:20rem; overflow: auto; background:none;">
     @foreach (var brand in Model)
     {
         <div class="col-6">
             <div class="row m-t-b-025 shadow">
                 <div class="col-12 card brand-hover" style="border: 1px solid orangered;">
-                    <div class="i-div">
+                    <div class="i-div" style="height:5rem !important;">
                         <a asp-controller="Product" asp-action="ListByBrand" asp-route-brandId="@brand.BrandId">
                             <img alt="" src="~/images/BrandLogo/@brand.BrandLogo" class="i-div-image">
                         </a>
