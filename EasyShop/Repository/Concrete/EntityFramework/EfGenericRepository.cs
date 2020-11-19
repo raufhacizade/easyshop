@@ -26,7 +26,7 @@ namespace EasyShop.Repository.Concrete.EntityFramework
 
         public T Get(int id) => context.Set<T>().Find(id);
 
-        public IQueryable<T> GetAll() => context.Set<T>();
+        public virtual IQueryable<T> GetAll() => context.Set<T>();
 
         public void Save() => context.SaveChanges();
     }

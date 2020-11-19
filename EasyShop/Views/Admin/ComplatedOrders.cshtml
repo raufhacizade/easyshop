@@ -22,26 +22,37 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var order in Model.Orders)
+                        @if (Model.Orders.Count() > 0)
+                        {
+                            foreach (var order in Model.Orders)
+                            {
+                                <tr>
+                                    <td>@(++rowId)</td>
+                                    <td>@(order.UserName + ", " + @order.UserSurname)</td>
+                                    <td>@order.UserPhone</td>
+                                    <td class="text-center">@order.OrderDate</td>
+                                    <td class="text-center">@order.Bill $</td>
+                                    <td class="text-center">
+                                        <a asp-action="OrderDetails" asp-route-orderId="@order.OrderId" class="btn btn-outline-primary">Details</a>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        else
                         {
                             <tr>
-                                <td>@(++rowId)</td>
-                                <td>@(order.UserName + ", " + @order.UserSurname)</td>
-                                <td>@order.UserPhone</td>
-                                <td class="text-center">@order.OrderDate</td>
-                                <td class="text-center">@order.Bill $</td>
-                                <td class="text-center">
-                                    <a asp-action="OrderDetails" asp-route-orderId="@order.OrderId" class="btn btn-outline-primary">Details</a>
-                                </td>
+                            <td colspan="7" class="text-center">
+                                <h2 class="m-2 text-secondary">There are no waiting orders. </h2>
+                            </td>
                             </tr>
                         }
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                </div>
+                @if (Model.PagingDetails.TotalItems != 0)
+                {
+                    <div page-model="@Model.PagingDetails" page-action="@ViewBag.Action" class="paging-div"></div>
+                }
             </div>
-            @if (Model.PagingDetails.TotalItems != 0)
-            {
-                <div page-model="@Model.PagingDetails" page-action="@ViewBag.Action" class="paging-div"></div>
-            }
         </div>
     </div>
-</div>

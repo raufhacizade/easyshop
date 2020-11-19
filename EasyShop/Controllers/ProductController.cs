@@ -37,56 +37,41 @@ namespace EasyShop.Controllers
             return View(model);
         }
 
-        public IActionResult AllProduct(int page = 1)
+        public IActionResult GetProducts(string sortType="a",int page = 1)
         {
-            var products = repository.GetAll();
+            IQueryable<Product> products;
 
-            var count = products.Count();
-            products = products.Skip((page - 1) * PageSize).Take(PageSize);
-
-            ViewBag.Action = "AllProduct";
-            var model = new ProductPagingModel()
+            switch (sortType)
             {
-                Products = products,
-                PagingDetails = new PagingDetails()
-                {
-                    CurrentPage = page,
-                    ItemsPerPage = PageSize,
-                    TotalItems = count
-                }
-            };
-            return View("Index", model);
-        }
-
-        public IActionResult DiscountedProducts(int page = 1)
-        {
-            var products = repository.GetAll().Where(p=> p.Discount != 0);
-
-            var count = products.Count();
-            products = products.Skip((page - 1) * PageSize).Take(PageSize);
-
-            ViewBag.Action = "DiscountedProducts";
-            var model = new ProductPagingModel()
-            {
-                Products = products,
-                PagingDetails = new PagingDetails()
-                {
-                    CurrentPage = page,
-                    ItemsPerPage = PageSize,
-                    TotalItems = count
-                }
-            };
-            return View("Index", model);
-        }
-
-        public IActionResult NewProducts(int page = 1)
-        {
-            IQueryable<Product> products = repository.GetAll().OrderByDescending(p=> p.DateAdded);
+                case "lp":
+                    products = repository.GetAll().OrderBy(p=>p.Price);
+                    ViewBag.Action = "LowestPrice";
+                    break;
+                case "hp":
+                    products = repository.GetAll().OrderByDescending(p => p.Price);
+                    ViewBag.Action = "HighestPrice";
+                    break;
+                case "bs":
+                    products = repository.GetAll().OrderBy(p => p.SoldAmount);
+                    ViewBag.Action = "BestSellers";
+                    break;
+                case "n":
+                    products = repository.GetAll().OrderByDescending(p => p.DateAdded);
+                    ViewBag.Action = "TheNewests";
+                    break;
+                case "d":
+                    products = repository.GetAll().Where(p => p.Discount != 0);
+                    ViewBag.Action = "DiscountedProducts";
+                    break;
+                default:
+                    products = repository.GetAll();
+                    ViewBag.Action = "AllProduct";
+                    break;
+            }
 
             var count = products.Count();
             products = products.Skip((page - 1) * PageSize).Take(PageSize);
 
-            ViewBag.Action = "NewProducts";
             var model = new ProductPagingModel()
             {
                 Products = products,

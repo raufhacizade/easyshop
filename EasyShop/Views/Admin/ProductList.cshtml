@@ -40,10 +40,14 @@
                                 <td class="text-center">@product.Categories</td>
                                 <td class="text-center">@product.IsHome</td>
                                 <td class=" text-center">
-                                    <a asp-action="UpdateProductFeature" asp-route-ProductId="@product.ProductId" class="my-btn-border border-none p-2" style="text-decoration:none;">Features</a>
+                                    <a asp-action="UpdateProductFeature" asp-route-ProductId="@product.ProductId" class="my-btn-border border-none p-2" data-toggle="tooltip" title="Update and add features" style="text-decoration:none;">
+                                        Features
+                                    </a>
                                 </td>
                                 <td class=" text-center">
-                                    <a asp-action="UpdateProduct" asp-route-id="@product.ProductId" class="my-btn-border border-none p-2" style="text-decoration:none;">More Info..</a>
+                                    <a asp-action="UpdateProduct" asp-route-id="@product.ProductId" class="my-btn-border border-none p-2" data-toggle="tooltip" title="Update product and more info" style="text-decoration:none;">
+                                        Info/Update
+                                    </a>
                                 </td>
                                 <td class="text-center">
                                     <a asp-action="DeleteProduct" asp-route-id="@product.ProductId" class="btn btn-outline-danger"><i class="fas fa-trash-alt"></i></a>

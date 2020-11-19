@@ -13,9 +13,11 @@ namespace EasyShop.Repository.Concrete.EntityFramework
 
         public EasyShopContext EasyShopContext { get => context as EasyShopContext; }
 
+
         public Brand GetByName(string name)
             => EasyShopContext.Brands
                .Where(b => b.BrandName == name)
                .FirstOrDefault();
+
     }
 }

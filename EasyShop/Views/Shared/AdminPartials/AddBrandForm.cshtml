@@ -12,7 +12,7 @@
                     <div class="form-group">
                         <label>Brand Name</label>
                         <input asp-for="BrandName" class="form-control last-center" placeholder="Enter a brand name" required>
-                        <span asp-validation-for="BrandName"class="text-color-red"></span>
+                        <span asp-validation-for="BrandName" class="text-color-red"></span>
                     </div>
 
                     <div class="custom-file">
@@ -21,7 +21,7 @@
                         <span asp-validation-for="BrandLogo" class="text-color-red"></span>
                     </div>
 
-                   
+
 
                     @section AddScripts{
 
@@ -32,6 +32,10 @@
                             });
                         </script>
                     }
+
+                    <div class="text-center">
+                        <img id="form-loader" src="~/images/loading8.gif" style="width:150px;display:none;" />
+                    </div>
 
                     <div class="row">
                         <div class="col text-center" style="padding-top:1rem;">

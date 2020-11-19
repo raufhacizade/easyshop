@@ -24,9 +24,12 @@ namespace EasyShop.Repository.Concrete.EntityFramework
             {
                 ParentCategoryId = pC.ParentCategoryId,
                 ParentCategoryName = pC.ParentCategoryName,
-                Categories = categoryRepository.GetAll().Where(c => c.ParentCategoryId == pC.ParentCategoryId).ToList()
+                Categories = categoryRepository.GetAll()
+                                               .Where(c => c.ParentCategoryId == pC.ParentCategoryId)
+                                               .OrderBy(c => c.CategoryName)
+                                               .ToList()
             }
-            );
+            ).OrderBy(pc => pc.ParentCategoryName);
         }
 
         public ParentCategory GetByName(string name)

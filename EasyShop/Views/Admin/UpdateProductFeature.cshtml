@@ -9,7 +9,7 @@
             <div class="col-md-12 border p-2 rounded bg-white shadow" style="margin-bottom:3rem;">
                 <h1 class="text-center card-header ">Product Feature (@ViewBag.ProductName)</h1>
 
-                <table class="table">
+                <table class="table" id="ProductFeatureTableID">
                     <thead class="bg-dark text-white">
                         <tr>
                             <th scope="col">#</th>
@@ -34,7 +34,7 @@
                                         <input type="number" name="ProductId" value="@ViewBag.ProductId" hidden />
                                         <button type="submit" class="btn btn-outline-danger"><i class="fas fa-trash-alt"></i></button>
                                     </form>
-                                    
+
                                     @Html.Partial("AdminPartials/_UpdateProductFeatureItemForm", feature)
                                 </td>
                             </tr>
@@ -51,6 +51,7 @@
                             {
                                 ProductId = ViewBag.ProductId
                             };
+                            no++;
                         }
 
                         @Html.Partial("AdminPartials/AddProductFeatureForm", productFeature)
@@ -77,8 +78,7 @@
                                                 $("#form-loader").hide();
                                             },
                                             success: function (data) {
-                                                console.log(data);
-                                                var html = '<tr><td>' + @(++no) + '</td>' +
+                                                var html = '<tr><td>' + document.getElementById('ProductFeatureTableID').rows.length + '</td>' +
                                                     '<td>' + data[1] + '</td>' +
                                                     '<td>' + data[2] + '</td>' +
                                                     '<td class="text-center" id="feature' + data[2]+'">' +

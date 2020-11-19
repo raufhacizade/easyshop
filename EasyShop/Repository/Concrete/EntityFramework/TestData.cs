@@ -41,11 +41,11 @@ namespace EasyShop.Repository.Concrete.EntityFramework
 
                 var brands = new[]
                 {
-                    new Brand(){BrandName="Apple"},
-                    new Brand(){BrandName="Baker"},
-                    new Brand(){BrandName="Samsung"},
-                    new Brand(){BrandName="Nike"},
-                    new Brand(){BrandName="Terranova"}
+                    new Brand(){BrandName="Apple", BrandLogo ="apple.jpg"},
+                    new Brand(){BrandName="Baker", BrandLogo ="apple.jpg"},
+                    new Brand(){BrandName="Samsung", BrandLogo ="apple.jpg"},
+                    new Brand(){BrandName="Nike", BrandLogo ="apple.jpg"},
+                    new Brand(){BrandName="Terranova", BrandLogo ="apple.jpg"}
                 };
                 context.Brands.AddRange(brands);
 

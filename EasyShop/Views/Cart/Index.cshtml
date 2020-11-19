@@ -61,7 +61,7 @@
                                     <div class="col-3 text-center p-0">
                                         <a asp-controller="Cart" asp-action="ClearCart" class="btn btn-outline-danger float-left m-1">Clear Cart  <i class="fas fa-trash-alt"></i></a>
                                     </div>
-                                    
+
                                     <div class="col text-center p-0">
                                         <div class="row">
                                             <div class="col">
@@ -72,17 +72,7 @@
                                                 <a asp-controller="Home" asp-action="Index" class="btn  btn-outline-info float-right m-1">Continue Shopping</a>
                                             </div>
                                         </div>
-                                    </div> 
-                                    @*<div class="col-3 text-center p-0">
-                                        <div class="row">
-                                            <div class="col">
-                                                <a asp-controller="Home" asp-action="Index" class="btn  btn-outline-info float-right">Continue Shopping</a>
-                                                <a asp-controller="Cart" asp-action="Checkout" class="btn btn-outline-success text-center float-right">
-                                                    Checkout (Bill : @Model.GetBill()$)
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>*@
+                                    </div>
                                 </div>
                             </td>
                         </tr>
@@ -90,21 +80,21 @@
                     </tbody>
                 </table>
             </div>
-           
+
         </div>
     }
     else
     {
         <div class="col-sm-12">
-            <div class="row">
-                <div class="col  text-center">
-                    <img src="~/images/EmptyCart.gif" />
+            <div class="row  mt-lg-5  mt-5 mt-md-5 mt-sm-5 mt-xl-5">
+                <div class="col text-center">
+                    <img src="~/images/EmptyCart.gif" class="w-25 mt-lg-2  mt-2 mt-md-4 mt-sm-4 mt-xl-2" />
                 </div>
             </div>
 
             <div class="row">
-                <div class="col alert-danger text-center">
-                    <h1>Your cart is empty</h1>
+                <div class="col text-secondary text-center">
+                    <h3>Your cart is empty</h3>
                 </div>
             </div>
 
