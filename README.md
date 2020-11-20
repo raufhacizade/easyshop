@@ -5,7 +5,7 @@
 <h2 align="center">Online Shopping Project</h2>
 <br/>
 
-<p>*EasyShop* is a fully functional online shopping platform.This project developed based on the [MVC software design pattern](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) and you can find the source code of the front and back and sides from this repository.
+<p>*EasyShop* is a fully functional online shopping platform.This project developed based on the ([MVC software design pattern](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller)) and you can find the source code of the front and back and sides from this repository.
 
 </P>
 
