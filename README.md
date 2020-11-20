@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="wwwroot/images/logo.png">
+  <img src="easyshop/wwwroot/images/logo.png">
 </p>
 
 <h2 align="center">Online Shopping Project</h2>
