@@ -24,6 +24,7 @@ namespace EasyShop.Infrastructure
 
         public PagingDetails PageModel { get; set; }
         public string PageAction { get; set; }
+        public string SortType { get; set; }
 
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
@@ -34,7 +35,7 @@ namespace EasyShop.Infrastructure
             for (int i = 1; i <= PageModel.TotalPages(); i++)
             {
                 var tag = new TagBuilder("a");
-                tag.Attributes["href"] = urlHelper.Action(PageAction, new { page = i });
+                tag.Attributes["href"] = urlHelper.Action(PageAction, new { page = i, sortType = SortType });
                 tag.InnerHtml.Append(i.ToString());
 
                 if (i == PageModel.CurrentPage)

@@ -40,7 +40,7 @@
             <div class="col-12">
                 @if (Model.PagingDetails.TotalItems != 0)
                 {
-                    <div page-model="@Model.PagingDetails" page-action="@ViewBag.Action" class="paging-div m-1" style="display:inline-block;"></div>
+                    <div page-model="@Model.PagingDetails" page-action="@ViewBag.Action" sort-type="@ViewBag.SortType" class="paging-div m-1" style="display:inline-block;"></div>
                 }
             </div>
         </div>

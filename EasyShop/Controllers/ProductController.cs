@@ -37,41 +37,15 @@ namespace EasyShop.Controllers
             return View(model);
         }
 
-        public IActionResult GetProducts(string sortType="a",int page = 1)
+        public IActionResult GetProducts(string sortType,int page = 1)
         {
-            IQueryable<Product> products;
-
-            switch (sortType)
-            {
-                case "lp":
-                    products = repository.GetAll().OrderBy(p=>p.Price);
-                    ViewBag.Action = "LowestPrice";
-                    break;
-                case "hp":
-                    products = repository.GetAll().OrderByDescending(p => p.Price);
-                    ViewBag.Action = "HighestPrice";
-                    break;
-                case "bs":
-                    products = repository.GetAll().OrderBy(p => p.SoldAmount);
-                    ViewBag.Action = "BestSellers";
-                    break;
-                case "n":
-                    products = repository.GetAll().OrderByDescending(p => p.DateAdded);
-                    ViewBag.Action = "TheNewests";
-                    break;
-                case "d":
-                    products = repository.GetAll().Where(p => p.Discount != 0);
-                    ViewBag.Action = "DiscountedProducts";
-                    break;
-                default:
-                    products = repository.GetAll();
-                    ViewBag.Action = "AllProduct";
-                    break;
-            }
+            IQueryable<Product> products = SortProducts(sortType);
 
             var count = products.Count();
             products = products.Skip((page - 1) * PageSize).Take(PageSize);
 
+            ViewBag.Action = "GetProducts";
+            ViewBag.SortType = sortType;
             var model = new ProductPagingModel()
             {
                 Products = products,
@@ -167,6 +141,25 @@ namespace EasyShop.Controllers
                               Categories = p.ProductCategories.Select(pc => pc.Category).ToList()
                           }).FirstOrDefault()
             );
+
+        private IQueryable<Product> SortProducts(string sortType)
+        {
+            switch (sortType)
+            {
+                case "lp":
+                    return  repository.GetAll().OrderBy(p => p.Price);
+                case "hp":
+                    return  repository.GetAll().OrderByDescending(p => p.Price);
+                case "bs":
+                    return repository.GetAll().OrderBy(p => p.SoldAmount);
+                case "n":
+                    return repository.GetAll().OrderByDescending(p => p.DateAdded);
+                case "d":
+                    return repository.GetAll().Where(p => p.Discount != 0);
+                default:
+                    return repository.GetAll();
+            }
+        }
 
     }
 }
