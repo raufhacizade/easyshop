@@ -9,7 +9,7 @@
 
 <h2 align="center">What technologies were used in this project?</h2>
 
-<p align="center"></p>
+<p align="center">
 <table>
     <thead>
         <tr>
@@ -26,7 +26,7 @@
         </tr>
     </tbody>
 </table>
-<p></p>
+</p>
 
 | Back-end | Front-end |
 | :-: | :-: |
