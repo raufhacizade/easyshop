@@ -9,7 +9,7 @@
 
 <h2 align="center">What technologies were used in this project?</h2>
 
-<table style="margin-left: auto;  margin-right: auto;" margin-left="auto" margin-right="auto">
+<table width="100%" style="width:100%;margin-left: auto;  margin-right: auto;" margin-left="auto" margin-right="auto">
     <thead>
         <tr>
             <th align="left">Column1</th>
