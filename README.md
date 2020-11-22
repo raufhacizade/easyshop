@@ -28,7 +28,14 @@
 , [JavaScript](https://www.w3schools.com/js/DEFAULT.asp)
 , [jQuery (AJAX)](https://www.w3schools.com/jquery/jquery_ajax_intro.asp)
 
+### 3.Design Patterns
+[MVC](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller)
+, [Repository Pattern](https://medium.com/net-core/repository-pattern-implementation-in-asp-net-core-21e01c6664d7)
+, [Unit of Work Pattern](https://docs.microsoft.com/en-us/aspnet/mvc/overview/older-versions/getting-started-with-ef-5-using-mvc-4/implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application)
+, [AJAX](https://en.wikipedia.org/wiki/Ajax_(programming))
 
+### 4. Database:
+Thanks to ORM(Object–relational mapping) technique and EF Core framework, we don't have to create database by writing queries manually.In this project, EF core is used and it created two databases in the local SQL Server.The first one is EasyShopDB which was created to store data of brands, parent and subcategories, orders, products and features of the products. Second one is EasyShopIdentityDB which was created for storing the data of users. EF core generated these databases based on  EasyShopContext and AppIdentityDbContext clases.
 
 
 #### EF core was used in this project, just download the project and do configuration via the npm to initialize the database.
