@@ -28,7 +28,7 @@
 , [AJAX](https://en.wikipedia.org/wiki/Ajax_(programming))
 
 ### 4. Database:
-Thanks to [ORM(Object–relational mapping)](https://en.wikipedia.org/wiki/Object%E2%80%93relational_mapping) technique and EF Core framework](https://docs.microsoft.com/en-us/ef/core/),se don't have to create database by writing queries manually.In this project, EF core is used and it created two databases in the local SQL Server.The first one is EasyShopDB which was created to store data of brands, parent and subcategories, orders, products and features of the products. Second one is EasyShopIdentityDB which was created for storing the data of users. EF core generated these databases based on  EasyShopContext and AppIdentityDbContext clases.
+Thanks to [ORM(Object–relational mapping)](https://en.wikipedia.org/wiki/Object%E2%80%93relational_mapping) technique and [EF Core framework](https://docs.microsoft.com/en-us/ef/core/),we don't have to create database by writing queries manually.In this project, EF core is used and it created two databases in the local SQL Server.The first one is **EasyShopDB** which was created to store data of brands, parent and subcategories, orders, products and features of the products. Second one is **EasyShopIdentityDB** which was created for storing the data of users. EF core generated these databases based on  [EasyShopContext](https://github.com/raufhacizade/easyshop/blob/master/EasyShop/Repository/Concrete/EntityFramework/EasyShopContext.cs) and [AppIdentityDbContext](https://github.com/raufhacizade/easyshop/blob/master/EasyShop/IdentityEntity/AppIdentityDbContext.cs) clases.
 
 
 #### EF core was used in this project, just download the project and do configuration via the npm to initialize the database.
