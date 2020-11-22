@@ -9,6 +9,25 @@
 
 <h2 align="center">What technologies were used in this project?</h2>
 
+<p align="center"></p>
+<table>
+    <thead>
+        <tr>
+            <th align="left">Column1</th>
+            <th align="center">Column1</th>
+            <th align="right">Column1</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td align="left">Column1</td>
+            <td align="center">Column1</td>
+            <td align="right">Column1</td>
+        </tr>
+    </tbody>
+</table>
+<p></p>
+
 | Back-end | Front-end |
 | --- | --- |
 | [ASP.NET Core MVC](https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/start-mvc?view=aspnetcore-5.0&tabs=visual-studio) | [Razor Pages](https://docs.microsoft.com/en-us/aspnet/core/razor-pages/?view=aspnetcore-5.0&tabs=visual-studio) |
