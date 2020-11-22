@@ -24,8 +24,8 @@ namespace EasyShop.Controllers
     [Authorize(Roles = "admin")]
     public class AdminController : Controller
     {
-        public int OrderPageSize = 5;
-        public int UserPageSize = 5;
+        public int OrderPageSize = 7;
+        public int UserPageSize = 7;
         public int ProductPageSize = 5;
         public int BrandPageSize = 2;
 

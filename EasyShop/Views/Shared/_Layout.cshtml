@@ -64,7 +64,7 @@
                     </li>
                 </ul>
 
-                <a class="home-cart m-2" asp-controller="Cart" style="        text-decoration: none;">
+                <a class="home-cart m-2" asp-controller="Cart"  asp-action="Index" style="text-decoration: none;">
                     Cart<i class="fas fa-cart-arrow-down"></i><span class="cart-count shadow">@await Component.InvokeAsync("CartProductCount")</span>
                 </a>
 
