@@ -9,16 +9,9 @@
 
 <h2 align="center">What technologies were used in this project?</h2>
 
-| Back-end | Front-end |
-| -- | -- |
-| [ASP.NET Core MVC](https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/start-mvc?view=aspnetcore-5.0&tabs=visual-studio) | [Razor Pages](https://docs.microsoft.com/en-us/aspnet/core/razor-pages/?view=aspnetcore-5.0&tabs=visual-studio) |
-| [EF Core](https://docs.microsoft.com/en-us/ef/core/) | [Bootstrap](https://getbootstrap.com/docs/4.5/getting-started/introduction/) |
-|  | [HTML](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) |
-|  | [HTML](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) |
-|  | [HTML](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) |
-
 ### 1. For back-end:
-[ASP.NET Core MVC](https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/start-mvc?view=aspnetcore-5.0&tabs=visual-studio), [EF Core](https://docs.microsoft.com/en-us/ef/core/)
+[ASP.NET Core MVC](https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/start-mvc?view=aspnetcore-5.0&tabs=visual-studio)
+, [EF Core](https://docs.microsoft.com/en-us/ef/core/)
 
 ### 2. For front-end:
 [Razor Pages](https://docs.microsoft.com/en-us/aspnet/core/razor-pages/?view=aspnetcore-5.0&tabs=visual-studio)
@@ -35,7 +28,7 @@
 , [AJAX](https://en.wikipedia.org/wiki/Ajax_(programming))
 
 ### 4. Database:
-Thanks to ORM(Object–relational mapping) technique and EF Core framework, we don't have to create database by writing queries manually.In this project, EF core is used and it created two databases in the local SQL Server.The first one is EasyShopDB which was created to store data of brands, parent and subcategories, orders, products and features of the products. Second one is EasyShopIdentityDB which was created for storing the data of users. EF core generated these databases based on  EasyShopContext and AppIdentityDbContext clases.
+Thanks to [ORM(Object–relational mapping)](https://en.wikipedia.org/wiki/Object%E2%80%93relational_mapping) technique and EF Core framework](https://docs.microsoft.com/en-us/ef/core/),se don't have to create database by writing queries manually.In this project, EF core is used and it created two databases in the local SQL Server.The first one is EasyShopDB which was created to store data of brands, parent and subcategories, orders, products and features of the products. Second one is EasyShopIdentityDB which was created for storing the data of users. EF core generated these databases based on  EasyShopContext and AppIdentityDbContext clases.
 
 
 #### EF core was used in this project, just download the project and do configuration via the npm to initialize the database.
