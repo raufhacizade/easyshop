@@ -9,7 +9,7 @@
 
 <h2 align="center">What technologies were used in this project?</h2>
 
-<div style="background:red;"> test</div>
+<div style="background-color: coral;"> test</div>
 
 <table width="100%" style="width:100%;margin-left: auto;  margin-right: auto;" margin-left="auto" margin-right="auto">
     <thead>
