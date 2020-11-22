@@ -9,11 +9,11 @@
 
 <h2 align="center">What technologies were used in this project?</h2>
 
-1. ###For back-end:
+<h2>1. For back-end:</h2>
 * [ASP.NET Core MVC](https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/start-mvc?view=aspnetcore-5.0&tabs=visual-studio)
 * [EF Core](https://docs.microsoft.com/en-us/ef/core/)
 
-2. ###For front-end:
+<h2>2. For front-end:</h2>
 * [ASP.NET Core MVC](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller)
 * Razor Pages
 * [ASP.NET Core MVC](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller)
