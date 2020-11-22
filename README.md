@@ -12,16 +12,16 @@
 <table width="100%" style="width:100%;margin-left: auto;  margin-right: auto;" margin-left="auto" margin-right="auto">
     <thead>
         <tr>
-            <th align="left">Column1</th>
-            <th align="center">Column1</th>
-            <th align="right">Column1</th>
+            <th width="100%" align="left">Column1</th>
+            <th width="100%" align="center">Column1</th>
+            <th width="100%" align="right">Column1</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td align="left">Column1</td>
-            <td align="center">Column1</td>
-            <td align="right">Column1</td>
+            <td width="100%" align="left">Column1</td>
+            <td width="100%" align="center">Column1</td>
+            <td width="100%" align="right">Column1</td>
         </tr>
     </tbody>
 </table>
