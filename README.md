@@ -7,7 +7,7 @@
 
 *EasyShop* is a fully functional online shopping platform.This project developed based on the [MVC software design pattern](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) and you can find the source code of the front-end and back-end sides from this repository.
 
-<h2 align="center">What technologies were used in this project?</h2>
+<h2 align="center">What technologies and design patterns were used in this project?</h2>
 
 ### 1. For back-end:
 [ASP.NET Core MVC](https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/start-mvc?view=aspnetcore-5.0&tabs=visual-studio)
