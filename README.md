@@ -14,16 +14,12 @@
 * [EF Core](https://docs.microsoft.com/en-us/ef/core/)
 
 ### 2. For front-end:
-* [ASP.NET Core MVC](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller)
-* Razor Pages
-* [ASP.NET Core MVC](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller)
-* HTML
-* [ASP.NET Core MVC](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller)
-CSS
-[ASP.NET Core MVC](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller)
-JavaScript
-[ASP.NET Core MVC](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller)
-jQuery (AJAX)
+* [Razor Pages](https://docs.microsoft.com/en-us/aspnet/core/razor-pages/?view=aspnetcore-5.0&tabs=visual-studio)
+* [Bootstrap](https://getbootstrap.com/docs/4.5/getting-started/introduction/)
+* [HTML](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller)
+* [CSS](https://www.w3schools.com/css/)
+* [JavaScript](https://www.w3schools.com/js/DEFAULT.asp)
+* [jQuery (AJAX)](https://www.w3schools.com/jquery/jquery_ajax_intro.asp)
 
 
 
