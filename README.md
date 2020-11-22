@@ -18,16 +18,15 @@
 |  | [HTML](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) |
 
 ### 1. For back-end:
-* [ASP.NET Core MVC](https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/start-mvc?view=aspnetcore-5.0&tabs=visual-studio)
-* [EF Core](https://docs.microsoft.com/en-us/ef/core/)
+[ASP.NET Core MVC](https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/start-mvc?view=aspnetcore-5.0&tabs=visual-studio), [EF Core](https://docs.microsoft.com/en-us/ef/core/)
 
 ### 2. For front-end:
-* [Razor Pages](https://docs.microsoft.com/en-us/aspnet/core/razor-pages/?view=aspnetcore-5.0&tabs=visual-studio)
-* [Bootstrap](https://getbootstrap.com/docs/4.5/getting-started/introduction/)
-* [HTML](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller)
-* [CSS](https://www.w3schools.com/css/)
-* [JavaScript](https://www.w3schools.com/js/DEFAULT.asp)
-* [jQuery (AJAX)](https://www.w3schools.com/jquery/jquery_ajax_intro.asp)
+[Razor Pages](https://docs.microsoft.com/en-us/aspnet/core/razor-pages/?view=aspnetcore-5.0&tabs=visual-studio)
+, [Bootstrap](https://getbootstrap.com/docs/4.5/getting-started/introduction/)
+, [HTML](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller)
+, [CSS](https://www.w3schools.com/css/)
+, [JavaScript](https://www.w3schools.com/js/DEFAULT.asp)
+, [jQuery (AJAX)](https://www.w3schools.com/jquery/jquery_ajax_intro.asp)
 
 
 
