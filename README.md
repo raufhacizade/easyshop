@@ -9,23 +9,8 @@
 
 <h2 align="center">What technologies were used in this project?</h2>
 
-<table width="100%" style="width:100%;margin-left: auto;  margin-right: auto;" margin-left="auto" margin-right="auto">
-    <thead>
-        <tr>
-            <th width="49%" align="left">Column1</th>
-            <th width="49%" align="center">Column1</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td width="49%" align="left">Column1</td>
-            <td width="49%" align="center">Column1</td>
-        </tr>
-    </tbody>
-</table>
-
 | Back-end | Front-end |
-| :-: | :-: |
+| -- | -- |
 | [ASP.NET Core MVC](https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/start-mvc?view=aspnetcore-5.0&tabs=visual-studio) | [Razor Pages](https://docs.microsoft.com/en-us/aspnet/core/razor-pages/?view=aspnetcore-5.0&tabs=visual-studio) |
 | [EF Core](https://docs.microsoft.com/en-us/ef/core/) | [Bootstrap](https://getbootstrap.com/docs/4.5/getting-started/introduction/) |
 |  | [HTML](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) |
