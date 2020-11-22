@@ -9,21 +9,17 @@
 
 <h2 align="center">What technologies were used in this project?</h2>
 
-<div style="text-align: center;width:100%;"><p>test</p></div>
-
 <table width="100%" style="width:100%;margin-left: auto;  margin-right: auto;" margin-left="auto" margin-right="auto">
     <thead>
         <tr>
-            <th width="100%" align="left">Column1</th>
-            <th width="100%" align="center">Column1</th>
-            <th width="100%" align="right">Column1</th>
+            <th width="49%" align="left">Column1</th>
+            <th width="49%" align="center">Column1</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td width="100%" align="left">Column1</td>
-            <td width="100%" align="center">Column1</td>
-            <td width="100%" align="right">Column1</td>
+            <td width="49%" align="left">Column1</td>
+            <td width="49%" align="center">Column1</td>
         </tr>
     </tbody>
 </table>
