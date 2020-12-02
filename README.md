@@ -35,7 +35,7 @@ Thanks to [ORM(Object–relational mapping)](https://en.wikipedia.org/wiki/Objec
 ﻿<p align="center">
   <h3 align="center">A screenshot from Homepage<h3/>
   <img src="forReadME/homeScreen.png">
-  <br>
+  <br/>
   <h3 align="center">A record for Homepage<h3/>
   <img src="forReadME/home-page.gif">
 </p>
