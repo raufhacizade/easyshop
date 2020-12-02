@@ -33,11 +33,11 @@ Thanks to [ORM(Object–relational mapping)](https://en.wikipedia.org/wiki/Objec
 <h2 align="center">Screen records and pictures to demonstrate functionalities of EasyShop.</h2>
 
 ﻿<p align="center">
+  <h3 align="center">A screenshot from Homepage<h3/>
   <img src="forReadME/homeScreen.png">
-  <h3>A screenshot from Homepage<h3/>
   <br>
+  <h3 align="center">A record for Homepage<h3/>
   <img src="forReadME/home-page.gif">
-   <h3>A record for Homepage<h3/>
 </p>
 
 This record and picture is created to show the functions of the application such as **searching, sorting, filtering, pagination, getting detailed info**. You can search products by name and description. Also, you can filter products according to their brands and categories. Each category has a parent category.The Sorting operation is procesed based on all products, best seller products , newest products , discounted products , lowest to heighest price and its versa).
