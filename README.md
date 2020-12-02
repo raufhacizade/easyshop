@@ -33,10 +33,10 @@ Thanks to [ORM(Object–relational mapping)](https://en.wikipedia.org/wiki/Objec
 <h2 align="center">Screen records and pictures to demonstrate functionalities of EasyShop.</h2>
 
 ﻿<p align="center">
-  <h3 align="center">A screenshot from Homepage<h3/>
+  <h3 align="center">A screenshot from Homepage</h3>
   <img src="forReadME/homeScreen.png">
-  <br/>
-  <h3 align="center">A record for Homepage<h3/>
+  <br>
+  <h3 align="center">A record for Homepage</h3>
   <img src="forReadME/home-page.gif">
 </p>
 
