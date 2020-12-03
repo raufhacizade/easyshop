@@ -41,3 +41,27 @@ Thanks to [ORM(Object–relational mapping)](https://en.wikipedia.org/wiki/Objec
 </p>
 
 This record and picture is created to show the functions of the application such as **searching, sorting, filtering, pagination, getting detailed info**. You can search products by name and description. Also, you can filter products according to their brands and categories. Each category has a parent category.The Sorting operation is procesed based on all products, best seller products , newest products , discounted products , lowest to heighest price and its versa).
+<br>
+
+<p align="center">
+  <h3 align="center">A record for adding product to cart</h3>
+  <img src="forReadME/cart.gif">
+</p>
+<br>
+
+<p align="center">
+  <h3 align="center">A record to login and sign up</h3>
+  <img src="forReadME/login.gif">
+</p>
+<br>
+
+<p align="center">
+   <h3 align="center">A screenshot from Admin page</h3>
+  <img src="forReadME/adminScreen.png">
+  <br>
+  <h3 align="center">A record for Admin page</h3>
+  <img src="forReadME/admin.gif">
+</p>
+<br>
+
+
